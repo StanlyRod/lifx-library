@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifxLibrary", "LifxLibrary\LifxLibrary.csproj", "{52ACEB09-FF48-41C2-80AD-D56324208A38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifxLibrary", "LifxLibrary\LifxLibrary.csproj", "{52ACEB09-FF48-41C2-80AD-D56324208A38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console_test", "console_test\console_test.csproj", "{0D55E1DD-E84C-424D-BA27-E5E396E104D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "console_test", "console_test\console_test.csproj", "{0D55E1DD-E84C-424D-BA27-E5E396E104D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F8D05FB5-7A8A-40ED-8511-1D0C4DB17A4D}"
+	ProjectSection(SolutionItems) = preProject
+		Class1.cs = Class1.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

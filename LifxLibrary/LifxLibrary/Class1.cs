@@ -180,7 +180,7 @@ namespace LifxLibrary
 
 
         //synchronous multi use function to change the state of the light bulb 
-        public void MultiUse(string power = "on", string color = null, double brightness = 100, double duration = 0, bool fast = false)
+        public void MultiUse(string power = null, string color = null, double brightness = 100, double duration = 0, bool fast = false)
         {
             if (brightness < 0 || brightness > 100)
             {
@@ -221,7 +221,7 @@ namespace LifxLibrary
 
 
         //Asynchronous multi use function to change the state of the light bulb 
-        public async Task MultiUseAsync(string power = "on", string color = null, double brightness = 100, double duration = 0, bool fast = false)
+        public async Task MultiUseAsync(string power = null, string color = null, double brightness = 100, double duration = 0, bool fast = false)
         {
             if (brightness < 0 || brightness > 100)
             {
