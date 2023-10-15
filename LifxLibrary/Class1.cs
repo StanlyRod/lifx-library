@@ -1,8 +1,14 @@
 ﻿using System;
 
-public class LightsSearcher
+namespace LifxLibrary.Searcher
 {
-	public Class1()
+	public class LightsSearcher : LifxBulbs
 	{
+
+
+		public string reK()
+		{
+			return base.TokenKey;
+		}
 	}
 }

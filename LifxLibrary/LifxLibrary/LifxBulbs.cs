@@ -12,6 +12,7 @@ namespace LifxLibrary
 
         private string LightLabel { get; set; }
 
+
         public LifxBulbs(string tokenKey, string lightLabel)
         {
             TokenKey = tokenKey;
@@ -57,8 +58,8 @@ namespace LifxLibrary
             RestResponse resp = req.Send();
 
             ExceptionsThrower(resp);
-        }
 
+        }
 
 
 
@@ -179,7 +180,7 @@ namespace LifxLibrary
         }
 
 
-        //synchronous multi use function to change the state of the light bulb 
+        //synchronous multi use method to change the state of the light bulb 
         public void MultiUse(string power = null, string color = null, double brightness = 100, double duration = 0, bool fast = false)
         {
             if (brightness < 0 || brightness > 100)
@@ -220,7 +221,7 @@ namespace LifxLibrary
         }
 
 
-        //Asynchronous multi use function to change the state of the light bulb 
+        //Asynchronous multi use method to change the state of the light bulb 
         public async Task MultiUseAsync(string power = null, string color = null, double brightness = 100, double duration = 0, bool fast = false)
         {
             if (brightness < 0 || brightness > 100)
