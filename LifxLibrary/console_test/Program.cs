@@ -6,39 +6,47 @@ using System.IO;
 string tokenKey = Environment.GetEnvironmentVariable("LIFXKEY");
 
 LifxBulbs bed = new(tokenKey, "Bedroom");
-//await bed.MultiUseAsync(brightness:100, duration:10, color:"white");
 
 
-LightsSearcher ma = new LightsSearcher(tokenKey);
+
+
 try
 {
-    var lightquantity = await ma.CountDevices();
-    foreach (var light in lightquantity)
-    {
-        Console.WriteLine(light);
-    }
+    LightSearcher li = new LightSearcher(tokenKey);
 
-    var name = await ma.GetLightsNames();
+    var a = await li.ShowConnectedDevicesAsync();
+
+    foreach (var device in a)
+    {
+        if (device.Equals("Bedroom"))
+        {
+            BulbState bulb = await li.ShowLightStateAsync(device);
+            Console.WriteLine(bulb.Brightness);
+        }
+    }
    
 
-    BulbState bulb = await ma.ShowLightState(name[1]);
+    /*var la = await ma.GetLightsNamesAsync();
+    foreach (var l in la)
+    {
+        Console.WriteLine(l);
+    }*/
 
-  
 
-    Console.WriteLine(bulb.power);
+
+   // BulbState bulb = await ma.ShowLightStateAsync("Restroom");
+   
+
+ 
+
+    //Console.WriteLine(bulb.Power);
     
 
-    /*var labelnames = await ma.GetLightsNames();
-    Console.WriteLine(labelnames[0]);
-
-    foreach (var labelname in labelnames)
-    {
-        Console.WriteLine(labelname);
-    }*/
+    
 }
 catch(Exception e)
 {
-    Console.WriteLine(e);
+    Console.WriteLine(e.Message);
 }
 
 

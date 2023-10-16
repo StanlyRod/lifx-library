@@ -9,13 +9,14 @@ using System.Drawing;
 using System.Reflection.Emit;
 using System.Xml.Linq;
 using System;
+using System.Text.Json.Serialization;
 
 namespace LifxLibrary
 {
    
     
         // Root myDeserializedClass = JsonConvert.DeserializeObject<List<Root>>(myJsonResponse);
-        public class Capabilities
+        class Capabilities
         {
             public bool has_color { get; set; }
             public bool has_variable_color_temp { get; set; }
@@ -28,26 +29,26 @@ namespace LifxLibrary
             public int max_kelvin { get; set; }
         }
 
-        public class Color
+        class Color
         {
             public int hue { get; set; }
             public int saturation { get; set; }
             public int kelvin { get; set; }
         }
 
-        public class Group
+        class Group
         {
             public string id { get; set; }
             public string name { get; set; }
         }
 
-        public class Location
+        class Location
         {
             public string id { get; set; }
             public string name { get; set; }
         }
 
-        public class Product
+        class Product
         {
             public string name { get; set; }
             public string identifier { get; set; }
@@ -57,7 +58,7 @@ namespace LifxLibrary
             public Capabilities capabilities { get; set; }
         }
 
-        public class Root
+        class Root
         {
             public string id { get; set; }
             public string uuid { get; set; }
@@ -69,40 +70,43 @@ namespace LifxLibrary
             public Group group { get; set; }
             public Location location { get; set; }
             public Product product { get; set; }
+
+            [JsonIgnore]
             public DateTime last_seen { get; set; }
             public int seconds_since_seen { get; set; }
         }
 
-        
-        public class BulbState
-        {
-           public string id { get; set; }
-           public string uuid { get; set; }
-           public string label { get; set; }
-           public bool connected { get; set; }
-           public string power { get; set; }
-           public int hue { get; set; }
-           public int saturation { get; set; }
-           public double brightness { get; set; }
-           
-        }
+
+    public class BulbState
+    {
+
+        public string Id { get; set; }
+        public string UUID { get; set; }
+        public string Label { get; set; }
+        public bool Connected { get; set; }
+        public string Power { get; set; }
+        public int Hue { get; set; }
+        public int Saturation { get; set; }
+        public double Brightness { get; set; }
+
+    }
 
 
-    
-    public class LightsSearcher
+
+    public class LightSearcher
     {
 
         private string TokenKey { get; set; }
        
 
-        public LightsSearcher(string tokenKey)
+        public LightSearcher(string tokenKey)
         {
             TokenKey = tokenKey;
         }
 
 
-        //this method returns an integer of all connected devices
-        public async Task<List<string>> CountDevices()
+        //this method returns a list of string with the names of all connected devices
+        public async Task<List<string>> ShowConnectedDevicesAsync()
         {
             string endPoint = "https://api.lifx.com/v1/lights/all";
             using HttpClient client = new HttpClient();
@@ -110,8 +114,9 @@ namespace LifxLibrary
             
             HttpResponseMessage response = await client.GetAsync(endPoint);
 
-            //string totalDevices = "";
-            List<string> namesco = new List<string>();
+           
+            List<string> connectedDevices = new List<string>();
+
 
             if (response.IsSuccessStatusCode)
             {
@@ -119,23 +124,20 @@ namespace LifxLibrary
 
                 List<Root> obj = await JsonSerializer.DeserializeAsync<List<Root>>(responsebody);
 
-                
-                foreach(var value in obj[0].label)
+                foreach (var bulb in obj)
                 {
-                    if(value.Equals("label"))
+                    if(bulb.connected.Equals(true))
                     {
-                        namesco.Add(value.ToString());
+                        connectedDevices.Add(bulb.label);
                     }
                 }
-                
-              
             }
             else if(!response.IsSuccessStatusCode)
             {
                 throw new Exception($"Something went wrong {response.StatusCode}");
             }
 
-            return namesco;
+            return connectedDevices;
         }
 
 
@@ -145,7 +147,7 @@ namespace LifxLibrary
 
 
         //this method returns the lights label name
-        public async Task<List<string>> GetLightsNames()
+        public async Task<List<string>> GetLightsNamesAsync()
         {
             string endPoint = "https://api.lifx.com/v1/lights/all";
             using HttpClient client = new HttpClient();
@@ -181,7 +183,7 @@ namespace LifxLibrary
 
 
 
-        public async Task<BulbState> ShowLightState(string labelName)
+        public async Task<BulbState> ShowLightStateAsync(string labelName)
         {
             string endPoint = $"https://api.lifx.com/v1/lights/label:{labelName}";
             using HttpClient client = new HttpClient();
@@ -199,14 +201,14 @@ namespace LifxLibrary
 
                 List<Root> obj = await JsonSerializer.DeserializeAsync<List<Root>>(responsebody);
 
-                lightState.id = obj[0].id;
-                lightState.uuid = obj[0].uuid;
-                lightState.label = obj[0].label;
-                lightState.connected = obj[0].connected;
-                lightState.power = obj[0].power;
-                lightState.hue = obj[0].color.hue;
-                lightState.saturation = obj[0].color.saturation;
-                lightState.brightness = obj[0].brightness;
+                lightState.Id         = obj[0].id;
+                lightState.UUID       = obj[0].uuid;
+                lightState.Label      = obj[0].label;
+                lightState.Connected  = obj[0].connected;
+                lightState.Power      = obj[0].power;
+                lightState.Hue        = obj[0].color.hue;
+                lightState.Saturation = obj[0].color.saturation;
+                lightState.Brightness = obj[0].brightness;
                     
             }
             else if (!response.IsSuccessStatusCode)
