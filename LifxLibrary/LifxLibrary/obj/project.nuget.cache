@@ -1,13 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "S+1UCfnz6TT4faGiIeL4Z+GG+ZtlP+LtyrKZP5BXjbZsf5JcP5RtnDsIuD5/Zs0wTEU1iy/Vt7ZLYXzpVl/BAA==",
+  "dgSpecHash": "27pQV05nhALqAcI/dCXMcAud5O0C48bvJvJvM75sPWd2wjIYDNDNT5MUxWWFmiuaYCLU0Mkj8L/e9x77cAOr+g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Stanl\\Desktop\\repos\\lifx-library\\LifxLibrary\\LifxLibrary\\LifxLibrary.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Stanl\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\Stanl\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.1\\microsoft.netcore.platforms.1.1.1.nupkg.sha512",
     "C:\\Users\\Stanl\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
-    "C:\\Users\\Stanl\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
     "C:\\Users\\Stanl\\.nuget\\packages\\restwrapper\\3.0.10\\restwrapper.3.0.10.nupkg.sha512",
     "C:\\Users\\Stanl\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
     "C:\\Users\\Stanl\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.2\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512",
@@ -64,16 +63,5 @@
     "C:\\Users\\Stanl\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\Stanl\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'RestWrapper 3.0.10' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "RestWrapper",
-      "targetGraphs": [
-        ".NETStandard,Version=v2.0"
-      ]
-    }
-  ]
+  "logs": []
 }

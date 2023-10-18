@@ -13,6 +13,11 @@ namespace LifxLibrary
         private string LightLabel { get; set; }
 
 
+        public LifxBulbs(string tokenKey) 
+        {
+            TokenKey = tokenKey;
+        }
+
         public LifxBulbs(string tokenKey, string lightLabel)
         {
             TokenKey = tokenKey;
@@ -49,6 +54,7 @@ namespace LifxLibrary
         }
 
 
+
         #region toggle bulb methods
         //synchronous method to toggle the light bulb
         public void LightToggle()
@@ -72,7 +78,33 @@ namespace LifxLibrary
 
             ExceptionsThrower(resp);
         }
+
+
+
+        //this method will perform a general synchronous toggle across the connected devices
+        public void SweepToggle()
+        {
+            RestRequest req = new RestRequest("https://api.lifx.com/v1/lights/all/toggle", HttpMethod.Post);
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            RestResponse resp = req.Send();
+
+            ExceptionsThrower(resp);
+        }
+
+
+
+        //this method will perform a general Asynchronous toggle across the connected devices
+        public async Task SweepToggleAsync()
+        {
+            RestRequest req = new RestRequest("https://api.lifx.com/v1/lights/all/toggle", HttpMethod.Post);
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            RestResponse resp = await req.SendAsync();
+
+            ExceptionsThrower(resp);
+        }
         #endregion
+
+
 
 
         //synchronous method to change the light bulb brightness
