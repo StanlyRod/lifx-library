@@ -82,11 +82,25 @@ namespace LifxLibrary
 
 
         //this method will perform a general synchronous toggle across the connected devices
-        public void SweepToggle()
+        public void SweepToggle(double duration = 0)
         {
+            if (duration < 0 || duration > 100)
+            {
+                throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
+            }
+
+            var payload = new
+            {
+                duration = duration
+            };
+
+            // convert the csharp objects to json objects
+            var sharpToJson = JsonSerializer.Serialize(payload);
+
             RestRequest req = new RestRequest("https://api.lifx.com/v1/lights/all/toggle", HttpMethod.Post);
+            req.ContentType = "application/json";
             req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = req.Send();
+            RestResponse resp = req.Send(sharpToJson);
 
             ExceptionsThrower(resp);
         }
@@ -94,11 +108,24 @@ namespace LifxLibrary
 
 
         //this method will perform a general Asynchronous toggle across the connected devices
-        public async Task SweepToggleAsync()
+        public async Task SweepToggleAsync(double duration = 0)
         {
+            if (duration < 0 || duration > 100)
+            {
+                throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
+            }
+
+            var payload = new
+            {
+                duration = duration
+            };
+
+            // convert the csharp objects to json objects
+            var sharpToJson = JsonSerializer.Serialize(payload);
+
             RestRequest req = new RestRequest("https://api.lifx.com/v1/lights/all/toggle", HttpMethod.Post);
             req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = await req.SendAsync();
+            RestResponse resp = await req.SendAsync(sharpToJson);
 
             ExceptionsThrower(resp);
         }

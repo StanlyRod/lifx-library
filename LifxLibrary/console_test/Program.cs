@@ -6,17 +6,15 @@ using System.Text.RegularExpressions;
 
 string tokenKey = Environment.GetEnvironmentVariable("LIFXKEY");
 
-LifxBulbs bulb = new(tokenKey);
-await bulb.SweepToggleAsync();
+
 
 
 
 
 try
 {
-    //bulb.SweepToggle();
-
-    
+    LifxBulbs bulb = new(tokenKey);
+    bulb.SweepToggle();
 }
 catch(Exception e)
 {
