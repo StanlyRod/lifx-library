@@ -7,14 +7,10 @@ using System.Text.RegularExpressions;
 string tokenKey = Environment.GetEnvironmentVariable("LIFXKEY");
 
 
-
-
-
-
 try
 {
-    LifxBulbs bulb = new(tokenKey);
-    bulb.SweepToggle();
+    LifxBulbs bulb = new(tokenKey, "Bedroom");
+    await bulb.LightToggleAsync(2);
 }
 catch(Exception e)
 {
@@ -25,4 +21,4 @@ catch(Exception e)
 
 
 // See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+//Console.WriteLine("Hello, World!");

@@ -93,8 +93,8 @@ namespace LifxLibrary
 
         private string TokenKey { get; set; }
 
-
-        public LightSearcher(string tokenKey)
+        
+       public LightSearcher(string tokenKey)
         {
             TokenKey = tokenKey;
         }
