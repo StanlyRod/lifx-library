@@ -100,7 +100,7 @@ namespace LifxLibrary
         }
 
 
-        //this method returns a list of string with the names of all connected devices
+        //this method returns a list of string with the label names of all connected devices
         public async Task<List<string>> ShowConnectedDevicesAsync()
         {
             string endPoint = "https://api.lifx.com/v1/lights/all";
