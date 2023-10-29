@@ -10,7 +10,7 @@ string tokenKey = Environment.GetEnvironmentVariable("LIFXKEY");
 try
 {
     LifxBulbs bulb = new LifxBulbs(tokenKey, "Bedroom");
-    LightSearcher light = new LightSearcher(tokenKey);
+    //LightSearcher light = new LightSearcher(tokenKey);
 
     //bulb.LightToggle();
     //await bulb.LightToggleAsync(5);
@@ -24,21 +24,25 @@ try
     //bulb.MultiUse(power: "on", color:"red", brightness:70, duration:10, fast:true);
     //await bulb.MultiUseAsync(power:"off", color:"yellow", brightness:100, duration:50, fast:false);
 
-    /*var devices = await light.ShowConnectedDevicesAsync();
+    /*var devices = await LightSearcher.ShowConnectedDevicesAsync();
     foreach (var device in devices)
     {
         Console.WriteLine(device);
     }*/
 
 
-    /*var names = await light.GetNamesAsync();
+    /*var names = await LightSearcher.GetNamesAsync();
     foreach (var name in names)
     {
         Console.WriteLine(name);
     }*/
 
-    /*BulbState bedroom = await light.ShowLightStateAsync("Bedroom");
-    Console.WriteLine(bedroom.Power);*/
+    LightSearcher.SetTokenKey(tokenKey);
+
+    BulbState bedroom = await LightSearcher.ShowLightStateAsync("Bedroom");
+
+    Console.WriteLine(bedroom.Power);
+    Console.WriteLine(bedroom.Brightness);
 
 
         
