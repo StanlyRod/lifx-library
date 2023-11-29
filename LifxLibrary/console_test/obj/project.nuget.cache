@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "99u3au3n5Fq6+hWR1T708mWRj1+dmgCm9YU+MIoZKHaqp18NQ3t41Hi5Ew9aZaYgq5btBdDGKhtSGOSgP+CWLQ==",
+  "dgSpecHash": "hcr6iXQdbE6+NMiiBoKcA6nu+yOQfBmmJUN2nyP/EGV5Rkw5NYGEv9bqG2EWUviqyD38csOZYXgH3M33P+AGsQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Stanly\\Desktop\\repos\\lifx-library\\LifxLibrary\\console_test\\console_test.csproj",
   "expectedPackageFiles": [
@@ -56,11 +56,7 @@
     "C:\\Users\\Stanly\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
     "C:\\Users\\Stanly\\.nuget\\packages\\system.text.json\\6.0.5\\system.text.json.6.0.5.nupkg.sha512",
     "C:\\Users\\Stanly\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
-    "C:\\Users\\Stanly\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
-    "C:\\Users\\Stanly\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
-    "C:\\Users\\Stanly\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
-    "C:\\Users\\Stanly\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512",
-    "C:\\Users\\Stanly\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.25\\microsoft.netcore.app.host.win-x64.6.0.25.nupkg.sha512"
+    "C:\\Users\\Stanly\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }
