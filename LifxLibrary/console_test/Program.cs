@@ -13,12 +13,8 @@ try
     string tokenKey = Environment.GetEnvironmentVariable("LIFXKEY");
 
     LifxBulbs bulb = new LifxBulbs(tokenKey, "Bedroom");
-<<<<<<< HEAD
 
     //LightSearcher.SetTokenKey(tokenKey);
-=======
-    //LightSearcher light = new LightSearcher(tokenKey);
->>>>>>> a1589ce4e0ef4815b347548c668b637c199521ed
 
     //bulb.LightToggle();
     //await bulb.LightToggleAsync(5);
@@ -49,16 +45,7 @@ try
         Console.WriteLine(name);
     }*/
 
-<<<<<<< HEAD
     /*LightSearcher.SetTokenKey(tokenKey);
-=======
-    LightSearcher.SetTokenKey(tokenKey);
-
-    BulbState bedroom = await LightSearcher.ShowLightStateAsync("Bedroom");
-
-    Console.WriteLine(bedroom.Power);
-    Console.WriteLine(bedroom.Brightness);
->>>>>>> a1589ce4e0ef4815b347548c668b637c199521ed
 
     BulbState bedroom = await LightSearcher.ShowStateAsync("Bedroom");
 
