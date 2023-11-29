@@ -26,9 +26,21 @@ namespace UnitTestLifxLibrary
         {
             LifxBulbs bulb = new LifxBulbs(lifxToken, "Bedroom");
             
-            async Task ToggleActionAsync ()=> await bulb.LightToggleAsync(-5);
+            async Task ToggleActionAsync ()=> await bulb.LightToggleAsync(-4);
 
             await Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(ToggleActionAsync);
+        }
+
+
+        [TestMethod]
+        public async Task TestMethodSweepToggle()
+        {
+
+            LifxBulbs bulb = new LifxBulbs(lifxToken, "Bedroom");
+
+            void SweepToggleAction() => bulb.SweepToggle(3);
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>(SweepToggleAction);
         }
     }
 }

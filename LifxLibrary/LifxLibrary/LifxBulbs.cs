@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using RestWrapper;
 using System.Text.Json;
-//LifxLibrary a .NET library to control lifx smart led bulbs
+//LifxLibrary a .NET library to control lifx smart led bulbs over the cloud
 //author: Ramon Stanly Rodriguez
 
 namespace LifxLibrary

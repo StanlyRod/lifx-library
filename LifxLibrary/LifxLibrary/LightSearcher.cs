@@ -88,20 +88,19 @@ namespace LifxLibrary
 
 
 
-    public class LightSearcher
+    public static class LightSearcher
     {
-
-        private string TokenKey { get; set; }
-
         
-       public LightSearcher(string tokenKey)
+        private static string TokenKey { get; set; }
+
+        public static void SetTokenKey(string token)
         {
-            TokenKey = tokenKey;
+            TokenKey = token;
         }
 
 
         //this method returns a list of string with the label names of all connected devices
-        public async Task<List<string>> ShowConnectedDevicesAsync()
+        public static async Task<List<string>> ShowConnectedDevicesAsync()
         {
             string endPoint = "https://api.lifx.com/v1/lights/all";
             using HttpClient client = new HttpClient();
@@ -141,8 +140,8 @@ namespace LifxLibrary
 
 
 
-        //this method returns the lights label names
-        public async Task<List<string>> GetNamesAsync()
+        //this method returns the led label names
+        public static async Task<List<string>> GetNamesAsync()
         {
             string endPoint = "https://api.lifx.com/v1/lights/all";
             using HttpClient client = new HttpClient();
@@ -177,8 +176,8 @@ namespace LifxLibrary
 
 
 
-        //this method returns the current states of the led bulb
-        public async Task<BulbState> ShowLightStateAsync(string labelName)
+        //this method returns the current states of the led bulbs
+        public static async Task<BulbState> ShowStateAsync(string labelName)
         {
             string endPoint = $"https://api.lifx.com/v1/lights/label:{labelName}";
             using HttpClient client = new HttpClient();
@@ -215,24 +214,5 @@ namespace LifxLibrary
         }
 
 
-
-
-
-
-
-
-        /*public async Task<int> CountDevices()
-        {
-            string endPoint = "https://api.lifx.com/v1/lights/all";
-            RestRequest req = new RestRequest(endPoint);
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse response = await req.SendAsync();
-
-            
-
-            Root obj = await JsonSerializer.DeserializeAsync<Root>(await response.);
-            int label = obj.label.Count();
-            return label;
-        }*/
     }
 }
