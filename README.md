@@ -1,4 +1,4 @@
-##Lifx-Library
+## Lifx-Library
 
 C# .NET Library to control the Lifx smart LED bulbs over the cloud
 
@@ -27,4 +27,16 @@ devices.SweepToggle();
 //async
 await devices.SweepToggleAsync();
 
+```
+
+### Brightness Methods
+The `PutBrightness` methods takes an integer parameter ranging from `0` to `100` to set the intensity of the brightness.
+
+```csharp
+LifxBulbs bedroom = new LifxBulbs("tokenKey", "Bedroom");
+
+//synchronous
+bedroom.PutBrightness(50); //set the brightness at 50%
+//async
+await PutBrightnessAsync(50);
 ```
