@@ -90,7 +90,6 @@ namespace LifxLibrary
 
     public static class LightSearcher
     {
-<<<<<<< HEAD
         
         private static string TokenKey { get; set; }
 
@@ -98,21 +97,6 @@ namespace LifxLibrary
         {
             TokenKey = token;
         }
-=======
-        
-        private static string TokenKey { get; set; }
-
-        public static void SetTokenKey(string token)
-        {
-            TokenKey = token;
-        }
-
-        
-       /*public LightSearcher(string tokenKey)
-        {
-            TokenKey = tokenKey;
-        }*/
->>>>>>> a1589ce4e0ef4815b347548c668b637c199521ed
 
 
         //this method returns a list of string with the label names of all connected devices
@@ -156,11 +140,7 @@ namespace LifxLibrary
 
 
 
-<<<<<<< HEAD
         //this method returns the led label names
-=======
-        //this method returns the lights label names
->>>>>>> a1589ce4e0ef4815b347548c668b637c199521ed
         public static async Task<List<string>> GetNamesAsync()
         {
             string endPoint = "https://api.lifx.com/v1/lights/all";
@@ -196,13 +176,8 @@ namespace LifxLibrary
 
 
 
-<<<<<<< HEAD
         //this method returns the current states of the led bulbs
         public static async Task<BulbState> ShowStateAsync(string labelName)
-=======
-        //this method returns the current states of the led bulb
-        public static async Task<BulbState> ShowLightStateAsync(string labelName)
->>>>>>> a1589ce4e0ef4815b347548c668b637c199521ed
         {
             string endPoint = $"https://api.lifx.com/v1/lights/label:{labelName}";
             using HttpClient client = new HttpClient();
