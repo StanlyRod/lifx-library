@@ -33,7 +33,7 @@ namespace UnitTestLifxLibrary
 
 
         [TestMethod]
-        public async Task TestMethodSweepToggle()
+        public void TestMethodSweepToggle()
         {
 
             LifxBulbs bulb = new LifxBulbs(lifxToken, "Bedroom");

@@ -22,6 +22,7 @@ The `SweepToggle` methods will perform a general toggle across the connected dev
 
 ```csharp
 LifxBulbs devices = new LifxBulbs("tokenKey");
+
 //synchronous
 devices.SweepToggle();
 //async
@@ -39,4 +40,23 @@ LifxBulbs bedroom = new LifxBulbs("tokenKey", "Bedroom");
 bedroom.PutBrightness(50); //set the brightness at 50%
 //async
 await PutBrightnessAsync(50);
+```
+
+### Color Methods
+The `PutColor` methods can receive a series of string values as parameter to define the color, brightness, saturation, and other attributes.
+
+```csharp
+LifxBulbs bedroom = new LifxBulbs("tokenKey", "Bedroom");
+
+//hexadecimal
+bedroom.PutColor("#0000FF"); //blue color
+
+//RGB
+bedroom.PutColor("rgb:255,0,0"); //red color
+
+//plain text
+bedroom.PutColor("white"); //white color
+
+//async
+await bedroom.PutColorAsync("hue:120 saturation:1.0 brightness:0.5"); //Deep green 50% brightness
 ```
