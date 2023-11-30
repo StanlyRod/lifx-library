@@ -60,3 +60,5 @@ bedroom.PutColor("white"); //white color
 //async
 await bedroom.PutColorAsync("hue:120 saturation:1.0 brightness:0.5"); //Deep green 50% brightness
 ```
+
+For a more detailed guide on defining colors, please visit the official Lifx API documentation at https://api.developer.lifx.com/reference/colors.
