@@ -168,3 +168,5 @@ Console.WriteLine(bedroom.Saturation); //saturation level
 
 Console.WriteLine(bedroom.Id); //bulb ID
 ```
+
+### Please report any bugs stanlywgr@outlook.com
