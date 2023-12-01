@@ -1,6 +1,6 @@
 ## Lifx-Library
 
-C# .NET Library to control the Lifx smart LED bulbs over the cloud
+C# .NET Standard Library to control the Lifx smart LED bulbs over the cloud
 
 
 ## Use
