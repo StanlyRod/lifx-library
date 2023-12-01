@@ -5,9 +5,6 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 
-
-
-
 try
 {
     string tokenKey = Environment.GetEnvironmentVariable("LIFXKEY");

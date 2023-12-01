@@ -9,6 +9,7 @@ Create an instance from the `LifxBulbs` class by providing the TOKENAPIKEY and t
 
 ```csharp
 using LifxLibrary;
+
 LifxBulbs bedroom = new LifxBulbs("tokenKey", "Bedroom");
 
 //synchronous
@@ -22,6 +23,8 @@ To use the `SweepToggle` methods is not mandatory to provide a label name in the
 The `SweepToggle` methods will perform a general toggle across the connected devices.
 
 ```csharp
+using LifxLibrary;
+
 LifxBulbs devices = new LifxBulbs("tokenKey");
 
 //synchronous
@@ -36,6 +39,8 @@ await devices.SweepToggleAsync();
 The `PutBrightness` methods takes an integer parameter ranging from `0` to `100` to set the intensity of the brightness.
 
 ```csharp
+using LifxLibrary;
+
 LifxBulbs bedroom = new LifxBulbs("tokenKey", "Bedroom");
 
 //synchronous
@@ -49,6 +54,8 @@ await PutBrightnessAsync(50);
 The `PutColor` methods can receive a series of string values as parameter to define the color, brightness, saturation, and other attributes.
 
 ```csharp
+using LifxLibrary;
+
 LifxBulbs bedroom = new LifxBulbs("tokenKey", "Bedroom");
 
 //hexadecimal
@@ -73,6 +80,8 @@ The MultiUse methods accept a set of optional parameters to carry out diverse ac
 The fast mode execute the query fast, without initial state checks and wait for no results.
 
 ```csharp
+using LifxLibrary;
+
 LifxBulbs bedroom = new LifxBulbs("tokenKey", "Bedroom");
 
 //synchronous
@@ -88,4 +97,26 @@ bedroom.MultiUse(power:"on", color:"white", brightness:80);
 await bedroom.MultiUseAsync("off");
 
 await bedroom.MultiUseAsync("on", "orange");
+```
+
+## The LightSearcher class
+### LightSearcher Methods
+The `LightSearcher` class is a static class that contains static async methods that helps to discover the LED bulbs and retrieve their properties such as `LED bulb name`, `power activity`, `connection activity`, `brightness level`, `saturation level` and more.
+
+### ShowConnectedDevicesAsync
+The `ShowConnectedDevicesAsync` returns a list of string object with the label names of all connected devices.
+
+```csharp
+using LifxLibrary;
+
+//set the tokenkey
+LightSearcher.SetTokenKey("tokenkey");
+
+var devices = await LightSearcher.ShowConnectedDevicesAsync();
+
+foreach(var device in devices)
+{
+    Console.WriteLine(device);
+}
+
 ```
