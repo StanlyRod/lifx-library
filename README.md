@@ -13,6 +13,7 @@ LifxBulbs bedroom = new LifxBulbs("tokenKey", "Bedroom");
 
 //synchronous
 bedroom.LightToggle(3); //toggle with 3 seconds duration
+
 //async
 await bedroom.LightToggleAsync(3); //async toggle with 3 seconds duration
 ```
@@ -25,6 +26,7 @@ LifxBulbs devices = new LifxBulbs("tokenKey");
 
 //synchronous
 devices.SweepToggle();
+
 //async
 await devices.SweepToggleAsync();
 
@@ -38,6 +40,7 @@ LifxBulbs bedroom = new LifxBulbs("tokenKey", "Bedroom");
 
 //synchronous
 bedroom.PutBrightness(50); //set the brightness at 50%
+
 //async
 await PutBrightnessAsync(50);
 ```
@@ -62,3 +65,27 @@ await bedroom.PutColorAsync("hue:120 saturation:1.0 brightness:0.5"); //Deep gre
 ```
 
 For a more detailed guide on defining colors, please visit the official Lifx API documentation at https://api.developer.lifx.com/reference/colors.
+
+### MultiUse Methods
+The MultiUse methods accept a set of optional parameters to carry out diverse actions on the LED bulbs, such as changing the `color`, `brightness`, `power`, `duration time`, and activating `fast mode`.
+
+### NOTE
+The fast mode execute the query fast, without initial state checks and wait for no results.
+
+```csharp
+LifxBulbs bedroom = new LifxBulbs("tokenKey", "Bedroom");
+
+//synchronous
+bedroom.MultiUse("on", "blue", 50, 6, true); //power on, color blue, 50% brightness, 6 seconds duration with fast mode activated
+
+//other ways to use it
+bedroom.MultiUse(power:"on", color:"blue", brightness:100, duration:6, fast:true);
+
+//duration time is 0 by default and fast mode is false by default
+bedroom.MultiUse(power:"on", color:"white", brightness:80); 
+
+//async
+await bedroom.MultiUseAsync("off");
+
+await bedroom.MultiUseAsync("on", "orange");
+```
