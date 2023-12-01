@@ -137,3 +137,25 @@ foreach(var device in devices)
     Console.WriteLine(device);
 }
 ```
+
+### ShowStateAsync()
+The `ShowStateAsync` method returns a `BulbState` object with the `power status`, `connection status`, `LED label name`, `brightness level`, `saturation level`, `UUID`, `ID`, and `HUE` level.
+
+```csharp
+using LifxLibrary;
+
+//set the tokenkey
+LightSearcher.SetTokenKey("tokenkey");
+
+BulbState bedroom = await LightSearcher.ShowStateAsync("Bedroom");
+
+Console.WriteLine(bedroom.Power); //the response would be off or on
+
+Console.WriteLine(bedroom.Connected); //the response would be true or false
+
+Console.WriteLine(bedroom.Brightness); //brightness level
+
+Console.WriteLine(bedroom.Saturation); //saturation level
+
+Console.WriteLine(bedroom.Id); //bulb ID
+```
