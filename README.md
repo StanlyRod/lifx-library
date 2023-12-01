@@ -2,6 +2,8 @@
 
 C# .NET Standard Library to control the Lifx smart LED bulbs over the cloud
 
+### Get the token key https://cloud.lifx.com/settings
+
 
 ## Use
 ### Toggle Methods
