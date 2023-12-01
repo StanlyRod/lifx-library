@@ -101,7 +101,7 @@ await bedroom.MultiUseAsync("on", "orange");
 
 ## The LightSearcher class
 ### LightSearcher Methods
-The `LightSearcher` class is a static class that contains static async methods that helps to discover the LED bulbs and retrieve their properties such as `LED bulb name`, `power activity`, `connection activity`, `brightness level`, `saturation level` and more.
+The `LightSearcher` class is a static class that contains static async methods that helps to discover the LED bulbs and retrieve their properties such as `LED bulb name`, `power status`, `connection status`, `brightness level`, `saturation level` and more.
 
 ### ShowConnectedDevicesAsync
 The `ShowConnectedDevicesAsync` returns a list of string object with the label names of all connected devices.
