@@ -37,6 +37,7 @@ await devices.SweepToggleAsync();
 
 ```
 
+
 ### Brightness Methods
 The `PutBrightness` methods takes an integer parameter ranging from `0` to `100` to set the intensity of the brightness.
 
@@ -51,6 +52,7 @@ bedroom.PutBrightness(50); //set the brightness at 50%
 //async
 await PutBrightnessAsync(50);
 ```
+
 
 ### Color Methods
 The `PutColor` methods can receive a series of string values as parameter to define the color, brightness, saturation, and other attributes.
@@ -74,6 +76,7 @@ await bedroom.PutColorAsync("hue:120 saturation:1.0 brightness:0.5"); //Deep gre
 ```
 
 For a more detailed guide on defining colors, please visit the official Lifx API documentation at https://api.developer.lifx.com/reference/colors.
+
 
 ### MultiUse Methods
 The MultiUse methods accept a set of optional parameters to carry out diverse actions on the LED bulbs, such as changing the `color`, `brightness`, `power`, `duration time`, and activating `fast mode`.
@@ -101,9 +104,11 @@ await bedroom.MultiUseAsync("off");
 await bedroom.MultiUseAsync("on", "orange");
 ```
 
+
 ## The LightSearcher class
 ### LightSearcher Methods
 The `LightSearcher` class is a static class that contains static async methods that helps to discover the LED bulbs and retrieve their properties such as `LED bulb name`, `power status`, `connection status`, `brightness level`, `saturation level` and more.
+
 
 ### ShowConnectedDevicesAsync()
 The `ShowConnectedDevicesAsync` method returns a list of string object with the label names of all connected devices.
@@ -123,6 +128,7 @@ foreach(var device in devices)
 
 ```
 
+
 ### GetNamesAsync()
 The `GetNamesAsync` method returns a list of string object with the label names of all devices linked to your account, regardless of their connection status or power status.
 
@@ -139,6 +145,7 @@ foreach(var device in devices)
     Console.WriteLine(device);
 }
 ```
+
 
 ### ShowStateAsync()
 The `ShowStateAsync` method returns a `BulbState` object with the `power status`, `connection status`, `LED label name`, `brightness level`, `saturation level`, `UUID`, `ID`, and `HUE` level.
