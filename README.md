@@ -4,10 +4,13 @@ C# .NET Standard Library to control the Lifx smart LED bulbs over the cloud
 
 This project is a wrapup library that contains functionalities from the official Lifx API https://api.developer.lifx.com/reference/introduction
 
-### Get the token key https://cloud.lifx.com/settings
+
 
 
 ## Use
+
+### Get the token key https://cloud.lifx.com/settings
+
 ### Toggle Methods
 Create an instance from the `LifxBulbs` class by providing the TOKENAPIKEY and the label name of the LED bulb as parameters.
 
