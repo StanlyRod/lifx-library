@@ -24,8 +24,7 @@ bedroom.LightToggle(3); //toggle with 3 seconds duration
 await bedroom.LightToggleAsync(3); //async toggle with 3 seconds duration
 ```
 ### NOTE
-To use the `SweepToggle` methods is not mandatory to provide a label name in the class constructor.
-The `SweepToggle` methods will perform a general toggle across the connected devices.
+It is not obligatory to specify a label name in the class constructor when using the SweepToggle methods. These methods will execute a general toggle operation across all connected devices.
 
 ```csharp
 using LifxLibrary;
@@ -39,7 +38,6 @@ devices.SweepToggle();
 await devices.SweepToggleAsync();
 
 ```
-###
 
 ### Brightness Methods
 The `PutBrightness` methods takes an integer parameter ranging from `0` to `100` to set the intensity of the brightness.
