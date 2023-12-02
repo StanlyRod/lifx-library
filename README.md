@@ -53,7 +53,7 @@ LifxBulbs bedroom = new LifxBulbs("tokenKey", "Bedroom");
 bedroom.PutBrightness(50); //set the brightness at 50%
 
 //async
-await PutBrightnessAsync(50);
+await bedroom.PutBrightnessAsync(50);
 ```
 ###
 
