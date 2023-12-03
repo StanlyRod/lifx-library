@@ -27,31 +27,40 @@ namespace LifxLibrary
         }
 
 
+        //throw exceptions related with specific http status code
         private void ExceptionsThrower(RestResponse resp)
         {
             if (resp.StatusCode == 401)
             {
-                throw new Exception("The token key is not valid");
+                throw new Exception("The token key is not valid.");
             }
             else if (resp.StatusCode == 404)
             {
-                throw new Exception("The label name did not match the light");
+                throw new Exception("The label name did not match the light.");
             }
             else if (resp.StatusCode == 400)
             {
-                throw new Exception("Request was invalid");
+                throw new Exception("Request was invalid.");
             }
             else if (resp.StatusCode == 500 || resp.StatusCode == 502 || resp.StatusCode == 503 || resp.StatusCode == 523)
             {
-                throw new Exception("Server error Something went wrong on LIFX's end");
+                throw new Exception("Server error Something went wrong on LIFX's end.");
             }
             else if (resp.StatusCode == 422)
             {
-                throw new Exception("Missing or malformed value");
+                throw new Exception("Missing or malformed value.");
             }
             else if (resp.StatusCode == 429)
             {
                 throw new Exception("Error Too Many Requests.");
+            }
+            else if (resp.StatusCode == 403)
+            {
+                throw new Exception("Bad OAuth scope.");
+            }
+            else
+            {
+                throw new Exception($"Error - Unhandled status code: {resp.StatusCode}");
             }
         }
 
