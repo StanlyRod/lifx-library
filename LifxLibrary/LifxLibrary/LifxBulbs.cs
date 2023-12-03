@@ -58,10 +58,7 @@ namespace LifxLibrary
             {
                 throw new Exception("Bad OAuth scope.");
             }
-            else
-            {
-                throw new Exception($"Error - Unhandled status code: {resp.StatusCode}");
-            }
+            
         }
 
 
