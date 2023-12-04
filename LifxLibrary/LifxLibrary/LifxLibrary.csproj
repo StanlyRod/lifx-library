@@ -16,11 +16,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\..\lifximg.png">
+    <None Include="..\nugetfiles\lifximg.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="..\..\..\..\README.MD">
+    <None Include="..\nugetfiles\README.MD">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
