@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using RestWrapper;
 using System.Text.Json;
-//LifxLibrary a .NET library to control lifx smart led bulbs over the cloud
+//LifxLibrary a .NET library to control lifx led bulbs over the cloud
 //author: Ramon Stanly Rodriguez
 
 namespace LifxLibrary
@@ -27,7 +27,7 @@ namespace LifxLibrary
         }
 
 
-        //throw exceptions related with specific http status code
+        //throw exceptions related with a specific http status code
         private void ExceptionsThrower(RestResponse resp)
         {
             if (resp.StatusCode == 401)
@@ -36,7 +36,7 @@ namespace LifxLibrary
             }
             else if (resp.StatusCode == 404)
             {
-                throw new Exception("The label name did not match the light.");
+                throw new Exception("The label name did not match the bulb name.");
             }
             else if (resp.StatusCode == 400)
             {
@@ -61,6 +61,61 @@ namespace LifxLibrary
             
         }
 
+        #region power bulb methods
+        //synchronous method to change power state of the light bulb
+        public void PutPower(string power, double duration = 0)
+        {
+            if (duration < 0 || duration > 100)
+            {
+                throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
+            }
+
+            var payload = new
+            {
+                power = power,
+                duration = duration
+            };
+
+            // convert the csharp objects to json objects
+            var csharpToJson = JsonSerializer.Serialize(payload);
+
+            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
+            req.ContentType = "application/json";
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            RestResponse resp = req.Send(csharpToJson);
+
+            ExceptionsThrower(resp);
+
+        }
+
+
+        //asynchronous method to change power state of the light bulb
+        public async Task PutPowerAsync(string power, double duration = 0)
+        {
+            if (duration < 0 || duration > 100)
+            {
+                throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
+            }
+
+            var payload = new
+            {
+                power = power,
+                duration = duration
+            };
+
+            // convert the csharp objects to json objects
+            var csharpToJson = JsonSerializer.Serialize(payload);
+
+            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
+            req.ContentType = "application/json";
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            RestResponse resp = await req.SendAsync(csharpToJson);
+
+            ExceptionsThrower(resp);
+
+        }
+
+        #endregion
 
 
         #region toggle bulb methods

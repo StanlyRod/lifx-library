@@ -11,6 +11,10 @@ try
 
     LifxBulbs bulb = new LifxBulbs(tokenKey, "Bedroom");
 
+    //bulb.PutPower("on");
+
+    //await bulb.PutPowerAsync("on", 5);
+
     //LightSearcher.SetTokenKey(tokenKey);
 
     //bulb.LightToggle();

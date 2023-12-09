@@ -9,6 +9,25 @@ This project is a wrapper library that contains functionalities from the officia
 
 ### Get the token key https://cloud.lifx.com/settings
 
+### Power Methods
+The `PutPower` methods allow you to change the state of the bulbs, setting them to either `on` or `off`, and providing an optional duration time parameter ranging from `0` to `100` seconds.
+
+```csharp
+using LifxLibrary;
+
+LifxBulbs bedroom = new LifxBulbs("tokenKey", "Bedroom");
+
+//synchronous
+bedroom.PutPower("on");
+
+bedroom.PutPower("off");
+
+bedroom.PutPower("on", 5); //with 5 seconds duration time
+
+//async
+await bedroom.PutPowerAsync("off");
+```
+
 ### Toggle Methods
 Create an instance from the `LifxBulbs` class by providing the TOKENAPIKEY and the label name of the LED bulb as parameters.
 
