@@ -2,7 +2,7 @@
 
 C# .NET Standard Library to control the Lifx smart LED bulbs over the cloud
 
-This project is a wrapup library that contains functionalities from the official Lifx API https://api.developer.lifx.com/reference/introduction
+This project is a wrapper library that contains functionalities from the official Lifx API https://api.developer.lifx.com/reference/introduction
 
 
 ## Use
