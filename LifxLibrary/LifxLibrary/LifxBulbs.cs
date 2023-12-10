@@ -30,92 +30,29 @@ namespace LifxLibrary
         //throw exceptions related with a specific http status code
         private void ExceptionsThrower(RestResponse resp)
         {
-            if (resp.StatusCode == 401)
+            switch (resp.StatusCode)
             {
-                throw new Exception("The token key is not valid.");
+                case 401:
+                    throw new Exception("The token key is not valid.");
+                case 404:
+                    throw new Exception("The label name did not match the bulb name.");
+                case 400:
+                    throw new Exception("Request was invalid.");
+                case 500:
+                case 502:
+                case 503:
+                case 523:
+                    throw new Exception("Server error Something went wrong on LIFX's end.");
+                case 422:
+                    throw new Exception("Missing or malformed value.");
+                case 429:
+                    throw new Exception("Error Too Many Requests.");
+                case 403:
+                    throw new Exception("Bad OAuth scope.");
             }
-            else if (resp.StatusCode == 404)
-            {
-                throw new Exception("The label name did not match the bulb name.");
-            }
-            else if (resp.StatusCode == 400)
-            {
-                throw new Exception("Request was invalid.");
-            }
-            else if (resp.StatusCode == 500 || resp.StatusCode == 502 || resp.StatusCode == 503 || resp.StatusCode == 523)
-            {
-                throw new Exception("Server error Something went wrong on LIFX's end.");
-            }
-            else if (resp.StatusCode == 422)
-            {
-                throw new Exception("Missing or malformed value.");
-            }
-            else if (resp.StatusCode == 429)
-            {
-                throw new Exception("Error Too Many Requests.");
-            }
-            else if (resp.StatusCode == 403)
-            {
-                throw new Exception("Bad OAuth scope.");
-            }
-            
-        }
-
-        #region power bulb methods
-        //synchronous method to change power state of the light bulb
-        public void PutPower(string power, double duration = 0)
-        {
-            if (duration < 0 || duration > 100)
-            {
-                throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
-            }
-
-            var payload = new
-            {
-                power = power,
-                duration = duration
-            };
-
-            // convert the csharp objects to json objects
-            var csharpToJson = JsonSerializer.Serialize(payload);
-
-            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
-            req.ContentType = "application/json";
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = req.Send(csharpToJson);
-
-            ExceptionsThrower(resp);
-
         }
 
 
-        //asynchronous method to change power state of the light bulb
-        public async Task PutPowerAsync(string power, double duration = 0)
-        {
-            if (duration < 0 || duration > 100)
-            {
-                throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
-            }
-
-            var payload = new
-            {
-                power = power,
-                duration = duration
-            };
-
-            // convert the csharp objects to json objects
-            var csharpToJson = JsonSerializer.Serialize(payload);
-
-            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
-            req.ContentType = "application/json";
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = await req.SendAsync(csharpToJson);
-
-            ExceptionsThrower(resp);
-
-        }
-
-        #endregion
 
 
         #region toggle bulb methods
@@ -221,6 +158,63 @@ namespace LifxLibrary
 
             ExceptionsThrower(resp);
         }
+        #endregion
+
+
+        #region power bulb methods
+        //synchronous method to change power state of the light bulb
+        public void PutPower(string power, double duration = 0)
+        {
+            if (duration < 0 || duration > 100)
+            {
+                throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
+            }
+
+            var payload = new
+            {
+                power = power,
+                duration = duration
+            };
+
+            // convert the csharp objects to json objects
+            var csharpToJson = JsonSerializer.Serialize(payload);
+
+            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
+            req.ContentType = "application/json";
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            RestResponse resp = req.Send(csharpToJson);
+
+            ExceptionsThrower(resp);
+
+        }
+
+
+        //asynchronous method to change power state of the light bulb
+        public async Task PutPowerAsync(string power, double duration = 0)
+        {
+            if (duration < 0 || duration > 100)
+            {
+                throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
+            }
+
+            var payload = new
+            {
+                power = power,
+                duration = duration
+            };
+
+            // convert the csharp objects to json objects
+            var csharpToJson = JsonSerializer.Serialize(payload);
+
+            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
+            req.ContentType = "application/json";
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            RestResponse resp = await req.SendAsync(csharpToJson);
+
+            ExceptionsThrower(resp);
+
+        }
+
         #endregion
 
 

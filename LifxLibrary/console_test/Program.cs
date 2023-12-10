@@ -11,7 +11,9 @@ try
 
     LifxBulbs bulb = new LifxBulbs(tokenKey, "Bedroom");
 
-    //bulb.PutPower("on");
+    
+
+    //bulb.PutPower("on", 6);
 
     //await bulb.PutPowerAsync("on", 5);
 
