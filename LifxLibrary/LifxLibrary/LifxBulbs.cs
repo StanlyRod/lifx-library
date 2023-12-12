@@ -51,7 +51,7 @@ namespace LifxLibrary
                     throw new Exception("Bad OAuth scope.");
             }
         }
-
+        
 
 
 
@@ -59,26 +59,29 @@ namespace LifxLibrary
         //synchronous method to toggle the light bulb
         public void LightToggle(double duration = 0)
         {
-            if (duration < 0 || duration > 100)
-            {
-                throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
-            }
 
-            var payload = new
-            {
-                duration = duration
-            };
+                if (duration < 0 || duration > 100)
+                {
+                    throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
+                }
 
-            // convert the csharp objects to json objects
-            var csharpToJson = JsonSerializer.Serialize(payload);
+                var payload = new
+                {
+                    duration = duration
+                };
 
-            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/toggle", HttpMethod.Post);
-            req.ContentType = "application/json";
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = req.Send(csharpToJson);
 
-            ExceptionsThrower(resp);
+                // convert the csharp objects to json objects
+                var csharpToJson = JsonSerializer.Serialize(payload);
 
+
+                RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/toggle", HttpMethod.Post);
+                req.ContentType = "application/json";
+                req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+                RestResponse resp = req.Send(csharpToJson);
+
+                ExceptionsThrower(resp);
+   
         }
 
 
@@ -91,20 +94,11 @@ namespace LifxLibrary
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
             }
 
-            var payload = new
-            {
-                duration = duration
-            };
 
-            // convert the csharp objects to json objects
-            var csharpToJson = JsonSerializer.Serialize(payload);
+            await Task.Run(() => LightToggle(duration));
 
-            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/toggle", HttpMethod.Post);
-            req.ContentType = "application/json";
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = await req.SendAsync(csharpToJson);
-
-            ExceptionsThrower(resp);
+            return throw Task;
+          
         }
 
 
