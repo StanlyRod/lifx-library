@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LifxLibrary", "LifxLibrary\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "console_test", "console_test\console_test.csproj", "{0D55E1DD-E84C-424D-BA27-E5E396E104D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestLifxLibrary", "UnitTestLifxLibrary\UnitTestLifxLibrary.csproj", "{A2CFEF31-DF13-43E5-A22B-81B0AFD2612E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestLifxLibrary", "UnitTestLifxLibrary\UnitTestLifxLibrary.csproj", "{A2CFEF31-DF13-43E5-A22B-81B0AFD2612E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

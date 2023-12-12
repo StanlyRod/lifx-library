@@ -9,7 +9,10 @@ try
 {
     string tokenKey = Environment.GetEnvironmentVariable("LIFXKEY");
 
-    LifxBulbs bulb = new LifxBulbs(tokenKey, "Bedroo");
+    //LifxBulbs bulb = new LifxBulbs(tokenKey, "Restroom");
+
+    LightGroup bulbs = new LightGroup(tokenKey, "Roo");
+    bulbs.SweepToggle();
 
     
 
@@ -20,7 +23,7 @@ try
     //LightSearcher.SetTokenKey(tokenKey);
 
     //bulb.LightToggle(3);
-    await bulb.LightToggleAsync(2);
+    //await bulb.LightToggleAsync(1.5);
 
     //bulb.SweepToggle(1);
 

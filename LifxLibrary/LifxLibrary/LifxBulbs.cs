@@ -51,9 +51,8 @@ namespace LifxLibrary
                     throw new Exception("Bad OAuth scope.");
             }
         }
-        
 
-
+      
 
         #region toggle bulb methods
         //synchronous method to toggle the light bulb
@@ -94,11 +93,20 @@ namespace LifxLibrary
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
             }
 
+            var payload = new
+            {
+                duration = duration
+            };
 
-            await Task.Run(() => LightToggle(duration));
+            // convert the csharp objects to json objects
+            var csharpToJson = JsonSerializer.Serialize(payload);
 
-            return throw Task;
-          
+            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/toggle", HttpMethod.Post);
+            req.ContentType = "application/json";
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            RestResponse resp = await req.SendAsync(csharpToJson);
+
+            ExceptionsThrower(resp);
         }
 
 
