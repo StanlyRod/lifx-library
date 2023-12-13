@@ -11,8 +11,8 @@ try
 
     //LifxBulbs bulb = new LifxBulbs(tokenKey, "Restroom");
 
-    LightGroup bulbs = new LightGroup(tokenKey, "Roo");
-    bulbs.SweepToggle();
+    LightGroup bulbs = new LightGroup(tokenKey, "Room");
+    await bulbs.SweepToggleAsync();
 
     
 
