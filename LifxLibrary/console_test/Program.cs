@@ -11,8 +11,10 @@ try
 
     //LifxBulbs bulb = new LifxBulbs(tokenKey, "Restroom");
 
-    LightGroup bulbs = new LightGroup(tokenKey, "Room");
-    await bulbs.SweepToggleAsync();
+    LightGroup bulbs = new LightGroup(tokenKey, "Patio");
+    //bulbs.PutBrightness(25);
+
+    //await bulbs.PutBrightnessAsync(100);
 
     
 

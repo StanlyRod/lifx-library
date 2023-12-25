@@ -101,5 +101,72 @@ namespace LifxLibrary
         }
         #endregion
 
+
+
+        #region birghtness methods
+        //synchronous method to change the light bulb brightness
+        public void PutBrightness(int intensity)
+        {
+            if (intensity < 0 || intensity > 100)
+            {
+                throw new ArgumentOutOfRangeException("Error the brightness level have to be set between 0 and 100");
+            }
+
+            double brightnessLevel = (double)intensity / 100.0;
+
+            //anonymous object type
+            var payload = new
+            {
+                brightness = brightnessLevel
+            };
+
+            // convert the csharp objects to json objects
+            var csharpToJson = JsonSerializer.Serialize(payload);
+
+            //send the http request
+            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/group:{GroupName}/state", HttpMethod.Put);
+            req.ContentType = "application/json";
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            RestResponse resp = req.Send(csharpToJson);//send data to the api
+
+            ExceptionsThrower(resp);
+
+        }
+
+
+        //Asynchronous method to change the light bulb brightness
+        public async Task PutBrightnessAsync(int intensity)
+        {
+            if (intensity < 0 || intensity > 100)
+            {
+                throw new ArgumentOutOfRangeException("Error the brightness level have to be set between 0 and 100");
+            }
+
+            double brightnessLevel = (double)intensity / 100.0;
+
+            //anonymous object type
+            var payload = new
+            {
+                brightness = brightnessLevel
+            };
+
+            // convert the csharp objects to json objects
+            var csharpToJson = JsonSerializer.Serialize(payload);
+
+            //send http request
+            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/group:{GroupName}/state", HttpMethod.Put);
+            req.ContentType = "application/json";
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            RestResponse resp = await req.SendAsync(csharpToJson);//send data to the api
+
+            ExceptionsThrower(resp);
+
+        }
+
+        #endregion
+
+
+
+
     }
 }
