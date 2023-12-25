@@ -167,6 +167,52 @@ namespace LifxLibrary
 
 
 
+        #region color methods
+
+        //synchronous method to change the light bulb color
+        public void PutColor(string colorValue)
+        {
+            //anonymous object type
+            var payload = new
+            {
+                color = colorValue
+            };
+
+            // convert the csharp objects to json objects
+            var csharpToJson = JsonSerializer.Serialize(payload);
+
+            //send http request
+            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/group:{GroupName}/state", HttpMethod.Put);
+            req.ContentType = "application/json";
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            RestResponse resp = req.Send(csharpToJson);//send data to the api
+
+            ExceptionsThrower(resp);
+        }
+
+
+        //Asynchronous method to change the light bulb color
+        public async Task PutColorAsync(string colorValue)
+        {
+            //anonymous object type
+            var payload = new
+            {
+                color = colorValue
+            };
+
+            // convert the csharp objects to json objects
+            var csharpToJson = JsonSerializer.Serialize(payload);
+
+            //send http request
+            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/group:{GroupName}/state", HttpMethod.Put);
+            req.ContentType = "application/json";
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            RestResponse resp = await req.SendAsync(csharpToJson);//send data to the api
+
+            ExceptionsThrower(resp);
+        }
+
+        #endregion
 
     }
 }
