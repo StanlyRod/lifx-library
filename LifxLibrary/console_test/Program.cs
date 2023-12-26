@@ -11,7 +11,7 @@ try
 
     //LifxBulbs bulb = new LifxBulbs(tokenKey, "Restroom");
 
-    LightGroup bulbs = new LightGroup(tokenKey, "Patio");
+    //LightGroup bulbs = new LightGroup(tokenKey, "Room");
 
     //bulbs.SweepToggle();
 
@@ -19,9 +19,13 @@ try
 
     //await bulbs.PutBrightnessAsync(100);
 
-    //bulbs.PutColor("green");
+    //bulbs.PutColor("white");
 
     //await bulbs.PutColorAsync("white");
+
+    //bulbs.MultiUse("on", "white");
+
+    //bulbs.MultiUse("off");
 
     
     //bulb.PutPower("on", 6);

@@ -9,24 +9,6 @@ This project is a wrapper library that contains functionalities from the officia
 
 ### Get the token key https://cloud.lifx.com/settings
 
-### Power Methods
-The `PutPower` methods allow you to change the state of the bulbs, setting them to either `on` or `off`, and providing an optional duration time parameter ranging from `0` to `100` seconds.
-
-```csharp
-using LifxLibrary;
-
-LifxBulbs bedroom = new LifxBulbs("tokenKey", "Bedroom");
-
-//synchronous
-bedroom.PutPower("on");
-
-bedroom.PutPower("off");
-
-bedroom.PutPower("on", 5); //with 5 seconds duration time
-
-//async
-await bedroom.PutPowerAsync("off");
-```
 
 ### Toggle Methods
 Create an instance from the `LifxBulbs` class by providing the TOKENAPIKEY and the label name of the LED bulb as parameters.
@@ -56,6 +38,25 @@ devices.SweepToggle();
 //async
 await devices.SweepToggleAsync();
 
+```
+
+### Power Methods
+The `PutPower` methods allow you to change the state of the bulbs, setting them to either `on` or `off`, and providing an optional duration time parameter ranging from `0` to `100` seconds.
+
+```csharp
+using LifxLibrary;
+
+LifxBulbs bedroom = new LifxBulbs("tokenKey", "Bedroom");
+
+//synchronous
+bedroom.PutPower("on");
+
+bedroom.PutPower("off");
+
+bedroom.PutPower("on", 5); //with 5 seconds duration time
+
+//async
+await bedroom.PutPowerAsync("off");
 ```
 
 ### Brightness Methods
@@ -187,6 +188,28 @@ Console.WriteLine(bedroom.Brightness); //brightness level
 Console.WriteLine(bedroom.Saturation); //saturation level
 
 Console.WriteLine(bedroom.Id); //bulb ID
+```
+
+## The LightGroup class
+The `LightGroup` class contains methods to control a set of LED bulbs that belong in a specific group.
+
+### NOTE
+Async and Synchronous methods available in the `LightGroup` class.
+
+`Toggle methods`
+`Brightness methods`
+`Color methods`
+`MultiUse methods`
+
+```csharp
+using LifxLibrary;
+
+LightGroup bulbs = new LightGroup("tokenKey", "Kitchen"); //tokenKey and group name
+
+bulbs.SweepToggle();
+
+await bulbs.PutColorAsync("blue");
+
 ```
 
 ### Please report any bugs stanlywgr@outlook.com

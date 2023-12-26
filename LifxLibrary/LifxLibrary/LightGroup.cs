@@ -214,5 +214,91 @@ namespace LifxLibrary
 
         #endregion
 
+
+        #region multiuse methods
+
+        //synchronous multi use method to change the state of the light bulb 
+        public void MultiUse(string power = null, string color = null, double brightness = 100, double duration = 0, bool fast = false)
+        {
+            if (brightness < 0 || brightness > 100)
+            {
+                throw new ArgumentOutOfRangeException("Error the brightness level have to be set between 0 and 100");
+            }
+
+            double brightnessLevel = (double)brightness / 100.0;
+
+            if (duration < 0 || duration > 100)
+            {
+                throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
+            }
+
+
+            //double durationTime = (double)duration / 100.0;
+
+            //anonymous object type
+            var payload = new
+            {
+                power = power,
+                color = color,
+                brightness = brightnessLevel,
+                duration = duration,
+                fast = fast
+            };
+
+            // convert the csharp objects to json objects
+            var csharpToJson = JsonSerializer.Serialize(payload);
+
+            //send http request
+            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/group:{GroupName}/state", HttpMethod.Put);
+            req.ContentType = "application/json";
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            RestResponse resp = req.Send(csharpToJson);//send data to the api
+
+            ExceptionsThrower(resp);
+        }
+
+
+        //Asynchronous multi use method to change the state of the light bulb 
+        public async Task MultiUseAsync(string power = null, string color = null, double brightness = 100, double duration = 0, bool fast = false)
+        {
+            if (brightness < 0 || brightness > 100)
+            {
+                throw new ArgumentOutOfRangeException("Error the brightness level have to be set between 0 and 100");
+            }
+
+            double brightnessLevel = (double)brightness / 100.0;
+
+            if (duration < 0 || duration > 100)
+            {
+                throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
+            }
+
+
+            //double durationTime = (double)duration / 100.0;
+
+            //anonymous object type
+            var payload = new
+            {
+                power = power,
+                color = color,
+                brightness = brightnessLevel,
+                duration = duration,
+                fast = fast
+            };
+
+            // convert the csharp objects to json objects
+            var csharpToJson = JsonSerializer.Serialize(payload);
+
+            //send http request
+            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/group:{GroupName}/state", HttpMethod.Put);
+            req.ContentType = "application/json";
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            RestResponse resp = await req.SendAsync(csharpToJson);//send data to the api
+
+            ExceptionsThrower(resp);
+        }
+
+        #endregion
+
     }
 }
