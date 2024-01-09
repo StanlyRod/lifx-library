@@ -884,7 +884,7 @@
           }
         }
       },
-      "LifxLibrary/1.0.1": {
+      "LifxLibrary/1.1.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
@@ -3085,7 +3085,7 @@
         "system.threading.tasks.nuspec"
       ]
     },
-    "LifxLibrary/1.0.1": {
+    "LifxLibrary/1.1.0": {
       "type": "project",
       "path": "../LifxLibrary/LifxLibrary.csproj",
       "msbuildProject": "../LifxLibrary/LifxLibrary.csproj"
@@ -3093,7 +3093,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "LifxLibrary >= 1.0.1"
+      "LifxLibrary >= 1.1.0"
     ]
   },
   "packageFolders": {

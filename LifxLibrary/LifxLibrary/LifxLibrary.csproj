@@ -9,10 +9,11 @@
     <PackageIcon>lifximg.png</PackageIcon>
     <RepositoryUrl>https://github.com/StanlyRod/lifx-library</RepositoryUrl>
     <PackageTags>Lifx, Bulbs, Iot, Smart, Led,</PackageTags>
-    <PackageReleaseNotes>Error related with exception fixed</PackageReleaseNotes>
+    <PackageReleaseNotes>New PutPower method added
+New LightGroup class added</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.MD</PackageReadmeFile>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
