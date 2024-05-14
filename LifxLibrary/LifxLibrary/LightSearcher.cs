@@ -25,8 +25,8 @@ namespace LifxLibrary
 
     class Color
     {
-        public int hue { get; set; }
-        public int saturation { get; set; }
+        public double hue { get; set; }
+        public double saturation { get; set; }
         public int kelvin { get; set; }
     }
 
@@ -79,8 +79,8 @@ namespace LifxLibrary
         public string Label { get; set; }
         public bool Connected { get; set; }
         public string Power { get; set; }
-        public int Hue { get; set; }
-        public int Saturation { get; set; }
+        public double Hue { get; set; }
+        public double Saturation { get; set; }
         public double Brightness { get; set; }
 
     }
