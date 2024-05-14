@@ -50,11 +50,13 @@ try
     //bulb.MultiUse(power: "on", color:"red", brightness:70, duration:10, fast:true);
     //await bulb.MultiUseAsync(power:"off", color:"yellow", brightness:100, duration:50, fast:false);
 
-    /*var devices = await LightSearcher.ShowConnectedDevicesAsync();
+    LightSearcher.SetTokenKey(tokenKey);
+
+    var devices = await LightSearcher.ShowConnectedDevicesAsync();
     foreach (var device in devices)
     {
         Console.WriteLine(device);
-    }*/
+    }
 
 
     /*var names = await LightSearcher.GetNamesAsync();

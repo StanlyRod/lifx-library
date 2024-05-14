@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "console_test/1.0.0": {
         "dependencies": {
-          "LifxLibrary": "1.0.1"
+          "LifxLibrary": "1.1.0"
         },
         "runtime": {
           "console_test.dll": {}
@@ -436,7 +436,7 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "LifxLibrary/1.0.1": {
+      "LifxLibrary/1.1.0": {
         "dependencies": {
           "RestWrapper": "3.0.10"
         },
@@ -823,7 +823,7 @@
       "path": "system.threading.tasks/4.3.0",
       "hashPath": "system.threading.tasks.4.3.0.nupkg.sha512"
     },
-    "LifxLibrary/1.0.1": {
+    "LifxLibrary/1.1.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

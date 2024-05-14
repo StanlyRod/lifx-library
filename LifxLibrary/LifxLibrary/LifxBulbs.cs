@@ -74,10 +74,10 @@ namespace LifxLibrary
                 var csharpToJson = JsonSerializer.Serialize(payload);
 
 
-                RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/toggle", HttpMethod.Post);
+                using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/toggle", HttpMethod.Post);
                 req.ContentType = "application/json";
                 req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-                RestResponse resp = req.Send(csharpToJson);
+                using RestResponse resp = req.Send(csharpToJson);
 
                 ExceptionsThrower(resp);
    
@@ -101,10 +101,10 @@ namespace LifxLibrary
             // convert the csharp objects to json objects
             var csharpToJson = JsonSerializer.Serialize(payload);
 
-            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/toggle", HttpMethod.Post);
+            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/toggle", HttpMethod.Post);
             req.ContentType = "application/json";
             req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = await req.SendAsync(csharpToJson);
+            using RestResponse resp = await req.SendAsync(csharpToJson);
 
             ExceptionsThrower(resp);
         }
@@ -127,10 +127,10 @@ namespace LifxLibrary
             // convert the csharp objects to json objects
             var csharpToJson = JsonSerializer.Serialize(payload);
 
-            RestRequest req = new RestRequest("https://api.lifx.com/v1/lights/all/toggle", HttpMethod.Post);
+            using RestRequest req = new RestRequest("https://api.lifx.com/v1/lights/all/toggle", HttpMethod.Post);
             req.ContentType = "application/json";
             req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = req.Send(csharpToJson);
+            using RestResponse resp = req.Send(csharpToJson);
 
             ExceptionsThrower(resp);
         }
@@ -153,10 +153,10 @@ namespace LifxLibrary
             // convert the csharp objects to json objects
             var csharpToJson = JsonSerializer.Serialize(payload);
 
-            RestRequest req = new RestRequest("https://api.lifx.com/v1/lights/all/toggle", HttpMethod.Post);
+            using RestRequest req = new RestRequest("https://api.lifx.com/v1/lights/all/toggle", HttpMethod.Post);
             req.ContentType = "application/json";
             req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = await req.SendAsync(csharpToJson);
+            using RestResponse resp = await req.SendAsync(csharpToJson);
 
             ExceptionsThrower(resp);
         }
@@ -181,10 +181,10 @@ namespace LifxLibrary
             // convert the csharp objects to json objects
             var csharpToJson = JsonSerializer.Serialize(payload);
 
-            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
+            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
             req.ContentType = "application/json";
             req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = req.Send(csharpToJson);
+            using RestResponse resp = req.Send(csharpToJson);
 
             ExceptionsThrower(resp);
 
@@ -208,10 +208,10 @@ namespace LifxLibrary
             // convert the csharp objects to json objects
             var csharpToJson = JsonSerializer.Serialize(payload);
 
-            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
+            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
             req.ContentType = "application/json";
             req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = await req.SendAsync(csharpToJson);
+            using RestResponse resp = await req.SendAsync(csharpToJson);
 
             ExceptionsThrower(resp);
 
@@ -241,10 +241,10 @@ namespace LifxLibrary
             var csharpToJson = JsonSerializer.Serialize(payload);
 
             //send the http request
-            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
+            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
             req.ContentType = "application/json";
             req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = req.Send(csharpToJson);//send data to the api
+            using RestResponse resp = req.Send(csharpToJson);//send data to the api
 
             ExceptionsThrower(resp);
 
@@ -271,10 +271,10 @@ namespace LifxLibrary
             var csharpToJson = JsonSerializer.Serialize(payload);
 
             //send http request
-            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
+            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
             req.ContentType = "application/json";
             req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = await req.SendAsync(csharpToJson);//send data to the api
+            using RestResponse resp = await req.SendAsync(csharpToJson);//send data to the api
 
             ExceptionsThrower(resp);
 
@@ -296,10 +296,10 @@ namespace LifxLibrary
             var csharpToJson = JsonSerializer.Serialize(payload);
 
             //send http request
-            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
+            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
             req.ContentType = "application/json";
             req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = req.Send(csharpToJson);//send data to the api
+            using RestResponse resp = req.Send(csharpToJson);//send data to the api
 
             ExceptionsThrower(resp);
         }
@@ -318,10 +318,10 @@ namespace LifxLibrary
             var csharpToJson = JsonSerializer.Serialize(payload);
 
             //send http request
-            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
+            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
             req.ContentType = "application/json";
             req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = await req.SendAsync(csharpToJson);//send data to the api
+            using RestResponse resp = await req.SendAsync(csharpToJson);//send data to the api
 
             ExceptionsThrower(resp);
         }
@@ -361,10 +361,10 @@ namespace LifxLibrary
             var csharpToJson = JsonSerializer.Serialize(payload);
 
             //send http request
-            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
+            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
             req.ContentType = "application/json";
             req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = req.Send(csharpToJson);//send data to the api
+            using RestResponse resp = req.Send(csharpToJson);//send data to the api
 
             ExceptionsThrower(resp);
         }
@@ -402,10 +402,10 @@ namespace LifxLibrary
             var csharpToJson = JsonSerializer.Serialize(payload);
 
             //send http request
-            RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
+            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
             req.ContentType = "application/json";
             req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            RestResponse resp = await req.SendAsync(csharpToJson);//send data to the api
+            using RestResponse resp = await req.SendAsync(csharpToJson);//send data to the api
 
             ExceptionsThrower(resp);
         }
