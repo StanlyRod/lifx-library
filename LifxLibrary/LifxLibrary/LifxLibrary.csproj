@@ -9,11 +9,10 @@
     <PackageIcon>lifximg.png</PackageIcon>
     <RepositoryUrl>https://github.com/StanlyRod/lifx-library</RepositoryUrl>
     <PackageTags>Lifx, Bulbs, Iot, Smart, Led,</PackageTags>
-    <PackageReleaseNotes>New PutPower method added
-New LightGroup class added</PackageReleaseNotes>
+    <PackageReleaseNotes>In this release, the JSON deserialization issue associated with the ShowConnectedDevicesAsync() method has been resolved.</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.MD</PackageReadmeFile>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

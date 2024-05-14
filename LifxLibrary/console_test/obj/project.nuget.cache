@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HfsEVrs/YuARE6/lHF65vVF5GFXlVDYXnymGg0fGE4XeG8Pw8BPBRGrwvLXhqiJIC/qReS0fy9nlBfycnO3EQA==",
+  "dgSpecHash": "GCPFA4D4mZY6DCrR3TzpIx1j8hyShsBwFpk3b3l4r7XzG1jfhr1fDO5P3qNAtMT6g61PjvUL1DwNqC0g7Xqjhg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Stanly\\Desktop\\repos\\lifx-library\\LifxLibrary\\console_test\\console_test.csproj",
   "expectedPackageFiles": [
@@ -56,8 +56,7 @@
     "C:\\Users\\Stanly\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
     "C:\\Users\\Stanly\\.nuget\\packages\\system.text.json\\6.0.5\\system.text.json.6.0.5.nupkg.sha512",
     "C:\\Users\\Stanly\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
-    "C:\\Users\\Stanly\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
-    "C:\\Users\\Stanly\\.nuget\\packages\\lifxlibrary\\1.1.0\\lifxlibrary.1.1.0.nupkg.sha512"
+    "C:\\Users\\Stanly\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }
