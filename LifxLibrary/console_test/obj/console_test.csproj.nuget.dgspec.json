@@ -74,7 +74,7 @@
       }
     },
     "C:\\Users\\Stanl\\Desktop\\repos\\lifx-library\\LifxLibrary\\LifxLibrary\\LifxLibrary.csproj": {
-      "version": "1.1.1",
+      "version": "2.0.0",
       "restore": {
         "projectUniqueName": "C:\\Users\\Stanl\\Desktop\\repos\\lifx-library\\LifxLibrary\\LifxLibrary\\LifxLibrary.csproj",
         "projectName": "LifxLibrary",
@@ -121,7 +121,7 @@
           "dependencies": {
             "RestWrapper": {
               "target": "Package",
-              "version": "[3.0.10, )"
+              "version": "[3.1.5, )"
             }
           },
           "imports": [

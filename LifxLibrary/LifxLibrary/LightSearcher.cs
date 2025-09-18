@@ -140,7 +140,7 @@ namespace LifxLibrary
 
 
 
-        //this method returns the led label names
+        //this method returns the bulb label names
         public static async Task<List<string>> GetNamesAsync()
         {
             string endPoint = "https://api.lifx.com/v1/lights/all";

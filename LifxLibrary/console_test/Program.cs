@@ -14,55 +14,39 @@ try
 
     //LightGroup bulbs = new LightGroup(tokenKey, "Room");
 
-    //bulb.SweepToggle();
+    //await bulb.SweepToggleAsync();
 
-    //bulbs.SweepToggle();
+    //await bulb.LightToggleAsync(3);
 
-    //bulbs.PutBrightness(25);
+    //await bulb.PutBrightnessAsync(10);
 
-    //await bulbs.PutBrightnessAsync(100);
+    //await bulb.PutPowerAsync("on", 3);
 
-    //bulbs.PutColor("white");
+    //await bulb.PutColorAsync("white");
+
+    //await bulb.MultiUseAsync(power: "on", color: "white", brightness: 100, duration: 10, fast: false);
+
+    //await bulbs.PutBrightnessAsync(30);
 
     //await bulbs.PutColorAsync("white");
 
-    //bulbs.MultiUse("on", "white");
+    //await bulbs.MultiUseAsync("on", "white");
 
-    //bulbs.MultiUse("off");
-
-
-    //bulb.PutPower("on", 6);
-
-    //await bulb.PutPowerAsync("on", 5);
+    //await bulbs.MultiUseAsync("on");
 
     //LightSearcher.SetTokenKey(tokenKey);
-
-    //bulb.LightToggle(3);
-    //await bulb.LightToggleAsync(1.5);
-
-    //bulb.SweepToggle(1);
-
-    //await bulb.SweepToggleAsync();
-
-    //bulb.PutBrightness(50);
-    //await bulb.PutBrightnessAsync(10);
-
-    //bulb.PutColor("blue");
-    //await bulb.PutColorAsync("white");
-
-    //bulb.MultiUse(power: "on", color:"red", brightness:70, duration:10, fast:true);
-    //await bulb.MultiUseAsync(power:"off", color:"yellow", brightness:100, duration:50, fast:false);
 
     /*LightSearcher.SetTokenKey(tokenKey);
 
     var devices = await LightSearcher.ShowConnectedDevicesAsync();
+
     foreach (var device in devices)
     {
         Console.WriteLine(device);
-    }*/
+    }
 
 
-    /*var names = await LightSearcher.GetNamesAsync();
+    var names = await LightSearcher.GetNamesAsync();
     foreach (var name in names)
     {
         Console.WriteLine(name);
@@ -75,8 +59,9 @@ try
     Console.WriteLine(bedroom.Power);
     Console.WriteLine(bedroom.Brightness);
     Console.WriteLine(bedroom.Hue);
-    Console.WriteLine(bedroom.Saturation);*/
-    
+    Console.WriteLine(bedroom.Saturation);
+    Console.WriteLine(bedroom.Connected);*/
+
 
 }
 catch(Exception e)

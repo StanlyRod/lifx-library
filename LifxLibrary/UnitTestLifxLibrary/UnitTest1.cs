@@ -9,17 +9,6 @@ namespace UnitTestLifxLibrary
     {
         public string? lifxToken = Environment.GetEnvironmentVariable("LIFXKEY");
 
-        
-        [TestMethod]
-        public void TestMethodToggle()
-        {
-            LifxBulbs bulb = new LifxBulbs(lifxToken, "Bedroom");
-
-            void ToggleAction ()=> bulb.LightToggle(101);
-
-            Assert.ThrowsException<ArgumentOutOfRangeException>(ToggleAction);
-        }
-
 
         [TestMethod]
         public async Task TestMethodToggleAsync()
@@ -31,16 +20,5 @@ namespace UnitTestLifxLibrary
             await Assert.ThrowsExceptionAsync<ArgumentOutOfRangeException>(ToggleActionAsync);
         }
 
-
-        [TestMethod]
-        public void TestMethodSweepToggle()
-        {
-
-            LifxBulbs bulb = new LifxBulbs(lifxToken, "Bedroom");
-
-            void SweepToggleAction() => bulb.SweepToggle(3);
-
-            Assert.ThrowsException<ArgumentOutOfRangeException>(SweepToggleAction);
-        }
     }
 }

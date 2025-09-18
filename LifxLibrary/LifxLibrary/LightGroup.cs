@@ -49,32 +49,7 @@ namespace LifxLibrary
 
 
 
-        #region toggle methods
-        //this method will perform a general synchronous toggle across the connected devices
-        public void SweepToggle(double duration = 0)
-        {
-
-            if (duration < 0 || duration > 100)
-            {
-                throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
-            }
-
-            var payload = new
-            {
-                duration = duration
-            };
-
-            // convert the csharp objects to json objects
-            var csharpToJson = JsonSerializer.Serialize(payload);
-
-            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/group:{GroupName}/toggle", HttpMethod.Post);
-            req.ContentType = "application/json";
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            using RestResponse resp = req.Send(csharpToJson);
-
-            ExceptionsThrower(resp);
-        }
-
+        #region toggle method
 
         //this method will perform a general Asynchronous toggle across the connected devices
         public async Task SweepToggleAsync(double duration = 0)
@@ -102,37 +77,7 @@ namespace LifxLibrary
         #endregion
 
 
-
-        #region birghtness methods
-        //synchronous method to change the light bulb brightness
-        public void PutBrightness(int intensity)
-        {
-            if (intensity < 0 || intensity > 100)
-            {
-                throw new ArgumentOutOfRangeException("Error the brightness level have to be set between 0 and 100");
-            }
-
-            double brightnessLevel = (double)intensity / 100.0;
-
-            //anonymous object type
-            var payload = new
-            {
-                brightness = brightnessLevel
-            };
-
-            // convert the csharp objects to json objects
-            var csharpToJson = JsonSerializer.Serialize(payload);
-
-            //send the http request
-            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/group:{GroupName}/state", HttpMethod.Put);
-            req.ContentType = "application/json";
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            using RestResponse resp = req.Send(csharpToJson);//send data to the api
-
-            ExceptionsThrower(resp);
-
-        }
-
+        #region birghtness method
 
         //Asynchronous method to change the light bulb brightness
         public async Task PutBrightnessAsync(int intensity)
@@ -166,30 +111,7 @@ namespace LifxLibrary
         #endregion
 
 
-
-        #region color methods
-
-        //synchronous method to change the light bulb color
-        public void PutColor(string colorValue)
-        {
-            //anonymous object type
-            var payload = new
-            {
-                color = colorValue
-            };
-
-            // convert the csharp objects to json objects
-            var csharpToJson = JsonSerializer.Serialize(payload);
-
-            //send http request
-            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/group:{GroupName}/state", HttpMethod.Put);
-            req.ContentType = "application/json";
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            using RestResponse resp = req.Send(csharpToJson);//send data to the api
-
-            ExceptionsThrower(resp);
-        }
-
+        #region color method
 
         //Asynchronous method to change the light bulb color
         public async Task PutColorAsync(string colorValue)
@@ -215,48 +137,7 @@ namespace LifxLibrary
         #endregion
 
 
-        #region multiuse methods
-
-        //synchronous multi use method to change the state of the light bulb 
-        public void MultiUse(string power = null, string color = null, double brightness = 100, double duration = 0, bool fast = false)
-        {
-            if (brightness < 0 || brightness > 100)
-            {
-                throw new ArgumentOutOfRangeException("Error the brightness level have to be set between 0 and 100");
-            }
-
-            double brightnessLevel = (double)brightness / 100.0;
-
-            if (duration < 0 || duration > 100)
-            {
-                throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
-            }
-
-
-            //double durationTime = (double)duration / 100.0;
-
-            //anonymous object type
-            var payload = new
-            {
-                power = power,
-                color = color,
-                brightness = brightnessLevel,
-                duration = duration,
-                fast = fast
-            };
-
-            // convert the csharp objects to json objects
-            var csharpToJson = JsonSerializer.Serialize(payload);
-
-            //send http request
-            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/group:{GroupName}/state", HttpMethod.Put);
-            req.ContentType = "application/json";
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            using RestResponse resp = req.Send(csharpToJson);//send data to the api
-
-            ExceptionsThrower(resp);
-        }
-
+        #region multiuse method
 
         //Asynchronous multi use method to change the state of the light bulb 
         public async Task MultiUseAsync(string power = null, string color = null, double brightness = 100, double duration = 0, bool fast = false)
@@ -272,9 +153,6 @@ namespace LifxLibrary
             {
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
             }
-
-
-            //double durationTime = (double)duration / 100.0;
 
             //anonymous object type
             var payload = new

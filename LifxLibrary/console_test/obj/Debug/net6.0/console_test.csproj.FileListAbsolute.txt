@@ -12,7 +12,6 @@ C:\Users\Stanl\Desktop\repos\lifx-library\LifxLibrary\console_test\obj\Debug\net
 C:\Users\Stanl\Desktop\repos\lifx-library\LifxLibrary\console_test\obj\Debug\net6.0\console_test.AssemblyInfoInputs.cache
 C:\Users\Stanl\Desktop\repos\lifx-library\LifxLibrary\console_test\obj\Debug\net6.0\console_test.AssemblyInfo.cs
 C:\Users\Stanl\Desktop\repos\lifx-library\LifxLibrary\console_test\obj\Debug\net6.0\console_test.csproj.CoreCompileInputs.cache
-C:\Users\Stanl\Desktop\repos\lifx-library\LifxLibrary\console_test\obj\Debug\net6.0\console_test.csproj.CopyComplete
 C:\Users\Stanl\Desktop\repos\lifx-library\LifxLibrary\console_test\obj\Debug\net6.0\console_test.dll
 C:\Users\Stanl\Desktop\repos\lifx-library\LifxLibrary\console_test\obj\Debug\net6.0\refint\console_test.dll
 C:\Users\Stanl\Desktop\repos\lifx-library\LifxLibrary\console_test\obj\Debug\net6.0\console_test.pdb
@@ -39,3 +38,8 @@ C:\Users\Stanly\Desktop\repos\lifx-library\LifxLibrary\console_test\obj\Debug\ne
 C:\Users\Stanly\Desktop\repos\lifx-library\LifxLibrary\console_test\obj\Debug\net6.0\console_test.pdb
 C:\Users\Stanly\Desktop\repos\lifx-library\LifxLibrary\console_test\obj\Debug\net6.0\console_test.genruntimeconfig.cache
 C:\Users\Stanly\Desktop\repos\lifx-library\LifxLibrary\console_test\obj\Debug\net6.0\ref\console_test.dll
+C:\Users\Stanl\Desktop\repos\lifx-library\LifxLibrary\console_test\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\Stanl\Desktop\repos\lifx-library\LifxLibrary\console_test\bin\Debug\net6.0\Timestamps.dll
+C:\Users\Stanl\Desktop\repos\lifx-library\LifxLibrary\console_test\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\Stanl\Desktop\repos\lifx-library\LifxLibrary\console_test\obj\Debug\net6.0\console_test.sourcelink.json
+C:\Users\Stanl\Desktop\repos\lifx-library\LifxLibrary\console_test\obj\Debug\net6.0\console_.E438EB8C.Up2Date

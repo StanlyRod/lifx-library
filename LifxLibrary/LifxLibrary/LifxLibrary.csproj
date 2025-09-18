@@ -9,10 +9,11 @@
     <PackageIcon>lifximg.png</PackageIcon>
     <RepositoryUrl>https://github.com/StanlyRod/lifx-library</RepositoryUrl>
     <PackageTags>Lifx, Bulbs, Iot, Smart, Led,</PackageTags>
-    <PackageReleaseNotes>In this release, the JSON deserialization issue associated with the ShowConnectedDevicesAsync() method has been resolved.</PackageReleaseNotes>
+    <PackageReleaseNotes>Breaking change: All synchronous methods have been removed. Use async counterparts (e.g., LightToggleAsync) for non-blocking operations.
+</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.MD</PackageReadmeFile>
-    <Version>1.1.1</Version>
+    <Version>2.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="RestWrapper" Version="3.0.10" />
+    <PackageReference Include="RestWrapper" Version="3.1.5" />
   </ItemGroup>
 
 </Project>
