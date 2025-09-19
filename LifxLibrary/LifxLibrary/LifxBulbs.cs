@@ -246,10 +246,9 @@ namespace LifxLibrary
 
         // Asynchronous method that applies a breathing effect to LIFX lights.
         public async Task BreatheEffectAsync(
-            string token,
             string selector,
             string color,
-            string fromColor = null,
+            string from_color = null,
             double period = 1,
             int cycles = 1,
             bool persist = false,
@@ -257,8 +256,6 @@ namespace LifxLibrary
             double peak = 0.5)
         {
             //Validate required parameters
-            if (string.IsNullOrWhiteSpace(token))
-                throw new ArgumentException("Token is required.", nameof(token));
             if (string.IsNullOrWhiteSpace(selector))
                 throw new ArgumentException("Selector is required.", nameof(selector));
             if (string.IsNullOrWhiteSpace(color))
@@ -273,7 +270,7 @@ namespace LifxLibrary
             var payload = new
             {
                 color = color,
-                from_color = fromColor,  // omit if null -> uses current bulb color
+                from_color = from_color,  // omit if null -> uses current bulb color
                 period = period,
                 cycles = cycles,
                 persist = persist,
@@ -287,9 +284,60 @@ namespace LifxLibrary
             // Create and send the HTTP POST request
             using var req = new RestRequest(url, HttpMethod.Post);
 
-            req.ContentType = "application/json";                  // Set content type to JSON
-            req.Headers.Add("Authorization", $"Bearer {token}");  // Add authorization header with token
-            req.Headers.Add("Accept", "application/json");       // Specify that we accept JSON responses
+            req.ContentType = "application/json";                     // Set content type to JSON
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");  // Add authorization header with token
+            req.Headers.Add("Accept", "application/json");          // Specify that we accept JSON responses
+
+            // Send the asynchronous HTTP request with the JSON payload
+            using var resp = await req.SendAsync(json);
+
+            ExceptionsThrower(resp);
+        }
+
+
+        // Triggers the LIFX pulse effect, flashing between colors.
+        public async Task PulseEffectAsync(
+            string selector,
+            string color,
+            string from_color = null,
+            double period = 1,
+            double cycles = 1,
+            bool persist = false,
+            bool power_on = true)
+        {
+            //Validate required parameters
+            if (string.IsNullOrWhiteSpace(selector))
+                throw new ArgumentException("Selector is required.", nameof(selector));
+            if (string.IsNullOrWhiteSpace(color))
+                throw new ArgumentException("Color is required.", nameof(color));
+            if (period <= 0)
+                throw new ArgumentOutOfRangeException(nameof(period), "Period must be > 0.");
+            if (cycles < 0)
+                throw new ArgumentOutOfRangeException(nameof(cycles), "Cycles must be >= 0.");
+
+            // Lifx API endpoint for pulse effect
+            var url = $"https://api.lifx.com/v1/lights/{selector}/effects/pulse";
+
+            // Request body payload
+            var payload = new
+            {
+                color = color,                  // required
+                from_color = from_color,       // optional; null -> current bulb color
+                period = period,              // seconds per cycle
+                cycles = cycles,             // times to repeat
+                persist = persist,          // keep last color if true
+                power_on = power_on        // power on before effect
+            };
+
+            // Convert csharp object to JSON object
+            var json = JsonSerializer.Serialize(payload);
+
+            // Create and send the HTTP POST request
+            using var req = new RestRequest(url, HttpMethod.Post);
+
+            req.ContentType = "application/json";                       // Set content type to JSON
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");    // Add authorization header with token
+            req.Headers.Add("Accept", "application/json");            // Specify that we accept JSON responses
 
             // Send the asynchronous HTTP request with the JSON payload
             using var resp = await req.SendAsync(json);
@@ -300,7 +348,7 @@ namespace LifxLibrary
 
 
 
-       #endregion
+        #endregion
 
 
     }
