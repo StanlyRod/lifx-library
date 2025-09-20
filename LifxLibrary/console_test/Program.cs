@@ -8,19 +8,19 @@ using static System.Reflection.Metadata.BlobBuilder;
 
 try
 {
-    //string tokenKey = Environment.GetEnvironmentVariable("LIFXKEY");
+    string tokenKey = Environment.GetEnvironmentVariable("LIFXKEY");
 
-    //LifxBulbs bulb = new LifxBulbs(tokenKey, "Bedroom");
+    LifxBulbs bulb = new LifxBulbs(tokenKey, "Bedroom");
 
     //LightGroup bulbs = new LightGroup(tokenKey, "Room");
 
     //await bulb.SweepToggleAsync();
 
-    //await bulb.LightToggleAsync(3);
+    //await bulb.LightToggleAsync(1);
 
     //await bulb.PutBrightnessAsync(10);
 
-    //await bulb.PutPowerAsync("on", 3);
+    //await bulb.PutPowerAsync("onn", 3);
 
     //await bulb.PutColorAsync("white");
 
@@ -61,6 +61,8 @@ try
     Console.WriteLine(bedroom.Hue);
     Console.WriteLine(bedroom.Saturation);
     Console.WriteLine(bedroom.Connected);*/
+
+    await bulb.BreatheEffectAsync("label:Bedroom", "orange", period: 3, cycles: 5, peak: 0.8);
 
 
 }

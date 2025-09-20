@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "console_test/1.0.0": {
         "dependencies": {
-          "LifxLibrary": "1.1.1"
+          "LifxLibrary": "2.0.0"
         },
         "runtime": {
           "console_test.dll": {}
@@ -459,14 +459,14 @@
           }
         }
       },
-      "LifxLibrary/1.1.1": {
+      "LifxLibrary/2.0.0": {
         "dependencies": {
           "RestWrapper": "3.1.5"
         },
         "runtime": {
           "LifxLibrary.dll": {
-            "assemblyVersion": "1.1.1",
-            "fileVersion": "1.1.1.0"
+            "assemblyVersion": "2.0.0",
+            "fileVersion": "2.0.0.0"
           }
         }
       }
@@ -856,7 +856,7 @@
       "path": "timestamps/1.0.11",
       "hashPath": "timestamps.1.0.11.nupkg.sha512"
     },
-    "LifxLibrary/1.1.1": {
+    "LifxLibrary/2.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

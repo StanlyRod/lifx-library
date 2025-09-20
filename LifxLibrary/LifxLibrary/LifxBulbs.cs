@@ -33,9 +33,9 @@ namespace LifxLibrary
             switch (resp.StatusCode)
             {
                 case 401:
-                    throw new Exception("The token key is not valid.");
+                    throw new Exception("The token key is required or is invalid");
                 case 404:
-                    throw new Exception("The label name did not match the bulb name.");
+                    throw new Exception("The label name is missing or do not match the bulb name.");
                 case 400:
                     throw new Exception("Request was invalid.");
                 case 500:
@@ -52,6 +52,17 @@ namespace LifxLibrary
             }
         }
 
+
+        private RestRequest BuildRequest(string endpoint, HttpMethod method)
+        {
+            RestRequest req = new RestRequest(endpoint, method);
+            req.ContentType = "application/json";
+            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            req.Headers.Add("Accept", "application/json");
+
+            return req;
+        }
+
       
 
         #region toggle bulb methods
@@ -63,6 +74,7 @@ namespace LifxLibrary
             {
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
             }
+            
 
             var payload = new
             {
@@ -88,6 +100,7 @@ namespace LifxLibrary
             {
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
             }
+            
 
             var payload = new
             {
@@ -282,11 +295,13 @@ namespace LifxLibrary
             var json = JsonSerializer.Serialize(payload);
 
             // Create and send the HTTP POST request
-            using var req = new RestRequest(url, HttpMethod.Post);
+            //using var req = new RestRequest(url, HttpMethod.Post);
 
-            req.ContentType = "application/json";                     // Set content type to JSON
+            /*req.ContentType = "application/json";                     // Set content type to JSON
             req.Headers.Add("Authorization", $"Bearer {TokenKey}");  // Add authorization header with token
-            req.Headers.Add("Accept", "application/json");          // Specify that we accept JSON responses
+            req.Headers.Add("Accept", "application/json");          // Specify that we accept JSON responses*/
+
+            using var req = BuildRequest(url, HttpMethod.Post);
 
             // Send the asynchronous HTTP request with the JSON payload
             using var resp = await req.SendAsync(json);
