@@ -62,7 +62,9 @@ try
     Console.WriteLine(bedroom.Saturation);
     Console.WriteLine(bedroom.Connected);*/
 
-    await bulb.BreatheEffectAsync("label:Bedroom", "orange", period: 3, cycles: 5, peak: 0.8);
+    //await bulb.BreatheEffectAsync("label:Bedroom", "orange", period: 3, cycles: 5, peak: 0.8);
+
+    //await bulb.PulseEffectAsync("label:Bedroom", "orange", period: 3, cycles:3);
 
 
 }

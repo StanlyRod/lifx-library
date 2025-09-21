@@ -52,12 +52,19 @@ namespace LifxLibrary
             }
         }
 
-
+        // Build json Rest request
         private RestRequest BuildRequest(string endpoint, HttpMethod method)
         {
+            // Create the request with target URL and HTTP verb
             RestRequest req = new RestRequest(endpoint, method);
+
+            // Body (if any) will be JSON
             req.ContentType = "application/json";
+
+            // Bearer token authentication for the LIFX Cloud API
             req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+
+            // Ask the server to return JSON
             req.Headers.Add("Accept", "application/json");
 
             return req;
@@ -294,13 +301,7 @@ namespace LifxLibrary
             // Convert csharp object to JSON object
             var json = JsonSerializer.Serialize(payload);
 
-            // Create and send the HTTP POST request
-            //using var req = new RestRequest(url, HttpMethod.Post);
-
-            /*req.ContentType = "application/json";                     // Set content type to JSON
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");  // Add authorization header with token
-            req.Headers.Add("Accept", "application/json");          // Specify that we accept JSON responses*/
-
+            // Build the http request
             using var req = BuildRequest(url, HttpMethod.Post);
 
             // Send the asynchronous HTTP request with the JSON payload
@@ -347,12 +348,7 @@ namespace LifxLibrary
             // Convert csharp object to JSON object
             var json = JsonSerializer.Serialize(payload);
 
-            // Create and send the HTTP POST request
-            using var req = new RestRequest(url, HttpMethod.Post);
-
-            req.ContentType = "application/json";                       // Set content type to JSON
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");    // Add authorization header with token
-            req.Headers.Add("Accept", "application/json");            // Specify that we accept JSON responses
+            using var req = BuildRequest(url, HttpMethod.Post);
 
             // Send the asynchronous HTTP request with the JSON payload
             using var resp = await req.SendAsync(json);
