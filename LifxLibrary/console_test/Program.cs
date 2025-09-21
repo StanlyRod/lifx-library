@@ -18,15 +18,14 @@ try
 
     //await bulb.LightToggleAsync(1);
 
-    //await bulb.PutBrightnessAsync(10);
+    await bulb.PutBrightnessAsync(100);
 
-    //await bulb.PutPowerAsync("onn", 3);
+    //await bulb.PutPowerAsync("on", 3);
 
-    await bulb.PutColorAsync("white");
+    //await bulb.PutColorAsync("white");
 
     //await bulb.MultiUseAsync(power: "on", color: "white", brightness: 100, duration: 10, fast: false);
 
-    //await bulbs.PutBrightnessAsync(30);
 
     //await bulbs.PutColorAsync("white");
 
