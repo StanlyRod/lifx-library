@@ -22,9 +22,9 @@ try
 
     //await bulb.PutPowerAsync("onn", 3);
 
-    //await bulb.PutColorAsync("white");
+    await bulb.PutColorAsync("white");
 
-    await bulb.MultiUseAsync(power: "on", color: "white", brightness: 100, duration: 10, fast: false);
+    //await bulb.MultiUseAsync(power: "on", color: "white", brightness: 100, duration: 10, fast: false);
 
     //await bulbs.PutBrightnessAsync(30);
 
