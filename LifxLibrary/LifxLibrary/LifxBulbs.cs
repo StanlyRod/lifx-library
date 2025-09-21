@@ -235,6 +235,7 @@ namespace LifxLibrary
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
             }
 
+            string url = $"https://api.lifx.com/v1/lights/label:{LightLabel}/state";
 
             //double durationTime = (double)duration / 100.0;
 
@@ -251,10 +252,14 @@ namespace LifxLibrary
             // convert the csharp objects to json objects
             var csharpToJson = JsonSerializer.Serialize(payload);
 
-            //send http request
-            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
-            req.ContentType = "application/json";
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            // Build the http request with headers
+            using var req = BuildRequest(url, HttpMethod.Put);
+
+            ////send http request
+            //using RestRequest req = new RestRequest(url, HttpMethod.Put);
+            //req.ContentType = "application/json";
+            //req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+
             using RestResponse resp = await req.SendAsync(csharpToJson);//send data to the api
 
             ExceptionsThrower(resp);
@@ -301,7 +306,7 @@ namespace LifxLibrary
             // Convert csharp object to JSON object
             var json = JsonSerializer.Serialize(payload);
 
-            // Build the http request
+            // Build the http request with headers
             using var req = BuildRequest(url, HttpMethod.Post);
 
             // Send the asynchronous HTTP request with the JSON payload
@@ -348,6 +353,7 @@ namespace LifxLibrary
             // Convert csharp object to JSON object
             var json = JsonSerializer.Serialize(payload);
 
+            // Build the http request with headers
             using var req = BuildRequest(url, HttpMethod.Post);
 
             // Send the asynchronous HTTP request with the JSON payload
