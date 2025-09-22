@@ -10,7 +10,7 @@ try
 {
     string tokenKey = Environment.GetEnvironmentVariable("LIFXKEY");
 
-    LifxBulbs bulb = new LifxBulbs(tokenKey, "Bedroom");
+    LifxBulbs bulb = new LifxBulbs(tokenKey, "Restroom");
 
     //LightGroup bulbs = new LightGroup(tokenKey, "Room");
 
@@ -18,7 +18,7 @@ try
 
     //await bulb.LightToggleAsync(1);
 
-    await bulb.PutBrightnessAsync(100);
+    //await bulb.PutBrightnessAsync(100);
 
     //await bulb.PutPowerAsync("on", 3);
 

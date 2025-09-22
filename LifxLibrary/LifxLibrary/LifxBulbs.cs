@@ -133,27 +133,31 @@ namespace LifxLibrary
         //asynchronous method to change power state of the light bulb
         public async Task PutPowerAsync(string power, double duration = 0)
         {
+            // Input validation: Ensure duration is between 0% and 100%
             if (duration < 0 || duration > 100)
             {
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
             }
 
+            // anonymous object type
             var payload = new
             {
                 power = power,
                 duration = duration
             };
 
+            // API endpoint
+            string url = $"https://api.lifx.com/v1/lights/label:{LightLabel}/state";
+
             // convert the csharp objects to json objects
             var csharpToJson = JsonSerializer.Serialize(payload);
 
-            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
-            req.ContentType = "application/json";
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            // Build the http request with headers
+            using var req = BuildRequest(url, HttpMethod.Put);
+
             using RestResponse resp = await req.SendAsync(csharpToJson);
 
             ExceptionsThrower(resp);
-
         }
 
         #endregion
@@ -165,6 +169,7 @@ namespace LifxLibrary
         //Asynchronous method to change the light bulb brightness
         public async Task PutBrightnessAsync(int intensity)
         {
+            // Input validation: Ensure intensity is between 0% and 100%
             if (intensity < 0 || intensity > 100)
             {
                 throw new ArgumentOutOfRangeException("Error the brightness level have to be set between 0 and 100");
@@ -178,6 +183,7 @@ namespace LifxLibrary
                 brightness = brightnessLevel
             };
 
+            // API endpoint
             string url = $"https://api.lifx.com/v1/lights/label:{LightLabel}/state";
 
             // convert the csharp objects to json objects
@@ -186,12 +192,7 @@ namespace LifxLibrary
             // Build the http request with headers
             using var req = BuildRequest(url, HttpMethod.Put);
 
-            ////send http request
-            //using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/label:{LightLabel}/state", HttpMethod.Put);
-            //req.ContentType = "application/json";
-            //req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-
-            using RestResponse resp = await req.SendAsync(csharpToJson);//send data to the api
+            using RestResponse resp = await req.SendAsync(csharpToJson); //send data to the api
 
             ExceptionsThrower(resp);
 
@@ -210,6 +211,7 @@ namespace LifxLibrary
                 color = colorValue
             };
 
+            // API endpoint
             string url = $"https://api.lifx.com/v1/lights/label:{LightLabel}/state";
 
             // convert the csharp objects to json objects
@@ -218,7 +220,7 @@ namespace LifxLibrary
             // Build the http request with headers
             using var req = BuildRequest(url, HttpMethod.Put);
 
-            using RestResponse resp = await req.SendAsync(csharpToJson);//send data to the api
+            using RestResponse resp = await req.SendAsync(csharpToJson); //send data to the api
 
             ExceptionsThrower(resp);
         }
@@ -230,21 +232,23 @@ namespace LifxLibrary
         //Asynchronous multi use method to change the state of the light bulb 
         public async Task MultiUseAsync(string power = null, string color = null, double brightness = 100, double duration = 0, bool fast = false)
         {
+            // Validate brightness parameter is within acceptable range (0-100%)
             if (brightness < 0 || brightness > 100)
             {
                 throw new ArgumentOutOfRangeException("Error the brightness level have to be set between 0 and 100");
             }
 
+            // Convert brightness from percentage (0-100) to decimal format (0.0-1.0) for LIFX API
             double brightnessLevel = (double)brightness / 100.0;
 
+            // Input validation: Ensure brightness is between 0% and 100%
             if (duration < 0 || duration > 100)
             {
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
             }
 
+            // API endpoint
             string url = $"https://api.lifx.com/v1/lights/label:{LightLabel}/state";
-
-            //double durationTime = (double)duration / 100.0;
 
             //anonymous object type
             var payload = new
