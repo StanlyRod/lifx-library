@@ -44,7 +44,7 @@ namespace LifxLibrary
                 case 523:
                     throw new Exception("Server error Something went wrong on LIFX's end.");
                 case 422:
-                    throw new Exception("Missing or malformed value.");
+                    throw new Exception("The arguments are missing or malformed value.");
                 case 429:
                     throw new Exception("Error Too Many Requests.");
                 case 403:
@@ -52,7 +52,7 @@ namespace LifxLibrary
             }
         }
 
-        // Build json Rest request
+        // Build json http request
         private RestRequest BuildRequest(string endpoint, HttpMethod method)
         {
             // Create the request with target URL and HTTP verb
@@ -77,7 +77,7 @@ namespace LifxLibrary
         //asynchronous method to toggle the light bulb
         public async Task LightToggleAsync(double duration = 0)
         {
-            //Input validation: ensure duration is set between 0% and 100%
+            //Input validation: ensure duration is set between 0 and 100 seconds
             if (duration < 0 || duration > 100)
             {
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
@@ -107,7 +107,7 @@ namespace LifxLibrary
         //This method will perform a general Asynchronous toggle across the connected devices
         public async Task SweepToggleAsync(double duration = 0)
         {
-            //Validation input: ensure duration is set between 0% and 100%
+            //Validation input: ensure duration is set between 0 and 100 seconds
             if (duration < 0 || duration > 100)
             {
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
@@ -141,7 +141,7 @@ namespace LifxLibrary
         //asynchronous method to change power state of the light bulb
         public async Task PutPowerAsync(string power, double duration = 0)
         {
-            // Input validation: Ensure duration is between 0% and 100%
+            // Input validation: Ensure duration is between 0 and 100 seconds
             if (duration < 0 || duration > 100)
             {
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
@@ -249,7 +249,7 @@ namespace LifxLibrary
             // Convert brightness from percentage (0-100) to decimal format (0.0-1.0) for LIFX API
             double brightnessLevel = (double)brightness / 100.0;
 
-            // Input validation: Ensure brightness is between 0% and 100%
+            // Input validation: Ensure brightness is between 0 and 100 seconds
             if (duration < 0 || duration > 100)
             {
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");

@@ -10,9 +10,9 @@ try
 {
     string tokenKey = Environment.GetEnvironmentVariable("LIFXKEY");
 
-    LifxBulbs bulb = new LifxBulbs(tokenKey, "Restroom");
+    //LifxBulbs bulb = new LifxBulbs(tokenKey, "Restroom");
 
-    //LightGroup bulbs = new LightGroup(tokenKey, "Room");
+    LightGroup bulbs = new LightGroup(tokenKey, "Room");
 
     //await bulb.SweepToggleAsync(0.9);
 
@@ -26,6 +26,8 @@ try
 
     //await bulb.MultiUseAsync(power: "on", color: "white", brightness: 100, duration: 10, fast: false);
 
+
+    //await bulbs.SweepToggleAsync(0.7);
 
     //await bulbs.PutColorAsync("white");
 
