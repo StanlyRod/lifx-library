@@ -103,23 +103,31 @@ namespace LifxLibrary
         //this method will perform a general Asynchronous toggle across the connected devices
         public async Task SweepToggleAsync(double duration = 0)
         {
+            //Validation input: ensure duration is set between 0% and 100%
             if (duration < 0 || duration > 100)
             {
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
             }
             
-
+            //anonymous object type
             var payload = new
             {
                 duration = duration
             };
 
+            // API endpoint
+            string url = "https://api.lifx.com/v1/lights/all/toggle";
+
             // convert the csharp objects to json objects
             var csharpToJson = JsonSerializer.Serialize(payload);
 
-            using RestRequest req = new RestRequest("https://api.lifx.com/v1/lights/all/toggle", HttpMethod.Post);
-            req.ContentType = "application/json";
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            //using RestRequest req = new RestRequest("https://api.lifx.com/v1/lights/all/toggle", HttpMethod.Post);
+            //req.ContentType = "application/json";
+            //req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+
+            // Build the http request with headers
+            using var req = BuildRequest(url, HttpMethod.Post);
+
             using RestResponse resp = await req.SendAsync(csharpToJson);
 
             ExceptionsThrower(resp);
