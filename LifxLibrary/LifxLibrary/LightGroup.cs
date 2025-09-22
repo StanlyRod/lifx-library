@@ -118,14 +118,20 @@ namespace LifxLibrary
                 brightness = brightnessLevel
             };
 
+            string url = $"https://api.lifx.com/v1/lights/group:{GroupName}/state";
+
             // convert the csharp objects to json objects
             var csharpToJson = JsonSerializer.Serialize(payload);
 
+            // Build the http request with headers
+            using var req = BuildRequest(url, HttpMethod.Put);
+
             //send http request
-            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/group:{GroupName}/state", HttpMethod.Put);
-            req.ContentType = "application/json";
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            using RestResponse resp = await req.SendAsync(csharpToJson);//send data to the api
+            //using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/group:{GroupName}/state", HttpMethod.Put);
+            //req.ContentType = "application/json";
+            //req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+
+            using RestResponse resp = await req.SendAsync(csharpToJson); //send data to the api
 
             ExceptionsThrower(resp);
 

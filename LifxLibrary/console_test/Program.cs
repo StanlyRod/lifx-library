@@ -35,6 +35,8 @@ try
 
     //await bulbs.MultiUseAsync("on");
 
+    await bulbs.PutBrightnessAsync(100);
+
     //LightSearcher.SetTokenKey(tokenKey);
 
     /*LightSearcher.SetTokenKey(tokenKey);
