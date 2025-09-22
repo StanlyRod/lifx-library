@@ -126,11 +126,6 @@ namespace LifxLibrary
             // Build the http request with headers
             using var req = BuildRequest(url, HttpMethod.Put);
 
-            //send http request
-            //using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/group:{GroupName}/state", HttpMethod.Put);
-            //req.ContentType = "application/json";
-            //req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-
             using RestResponse resp = await req.SendAsync(csharpToJson); //send data to the api
 
             ExceptionsThrower(resp);
@@ -154,11 +149,12 @@ namespace LifxLibrary
             // convert the csharp objects to json objects
             var csharpToJson = JsonSerializer.Serialize(payload);
 
-            //send http request
-            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/group:{GroupName}/state", HttpMethod.Put);
-            req.ContentType = "application/json";
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
-            using RestResponse resp = await req.SendAsync(csharpToJson);//send data to the api
+            string url = $"https://api.lifx.com/v1/lights/group:{GroupName}/state";
+
+            // Build the http request with headers
+            using var req = BuildRequest(url, HttpMethod.Put);
+
+            using RestResponse resp = await req.SendAsync(csharpToJson); //send data to the api
 
             ExceptionsThrower(resp);
         }
