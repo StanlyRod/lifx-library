@@ -14,9 +14,9 @@ try
 
     //LightGroup bulbs = new LightGroup(tokenKey, "Room");
 
-    await bulb.SweepToggleAsync(0.9);
+    //await bulb.SweepToggleAsync(0.9);
 
-    //await bulb.LightToggleAsync(1);
+    //await bulb.LightToggleAsync(0.3);
 
     //await bulb.PutBrightnessAsync(100);
 
