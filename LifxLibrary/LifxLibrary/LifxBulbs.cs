@@ -378,9 +378,31 @@ namespace LifxLibrary
 
 
 
+        public async Task EffectsOffAsync(string selector, bool powerOff = false)
+        {
+            if (string.IsNullOrWhiteSpace(token))
+                throw new ArgumentException("Token is required.", nameof(token));
+            if (string.IsNullOrWhiteSpace(selector))
+                throw new ArgumentException("Selector is required.", nameof(selector));
 
-        #endregion
+            string url = $"https://api.lifx.com/v1/lights/{selector}/effects/off";
+
+            // JSON body per docs: { "power_off": <bool> }
+            var payload = new { power_off = powerOff };
+            string json = JsonSerializer.Serialize(payload);
+
+            using var req = new RestRequest(url, HttpMethod.Post);
+            req.ContentType = "application/json";
+            req.Headers.Add("Authorization", $"Bearer {token}");
+            req.Headers.Add("Accept", "application/json");
+
+            using RestResponse resp = await req.SendAsync(json);
 
 
-    }
+
+
+            #endregion
+
+
+        }
 }
