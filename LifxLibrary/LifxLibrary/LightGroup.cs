@@ -167,6 +167,7 @@ namespace LifxLibrary
         //Asynchronous multi use method to change the state of the light bulb 
         public async Task MultiUseAsync(string power = null, string color = null, double brightness = 100, double duration = 0, bool fast = false)
         {
+            //Input validation: Ensure brightness is set between 0% and 100%
             if (brightness < 0 || brightness > 100)
             {
                 throw new ArgumentOutOfRangeException("Error the brightness level have to be set between 0 and 100");
@@ -174,6 +175,7 @@ namespace LifxLibrary
 
             double brightnessLevel = (double)brightness / 100.0;
 
+            //Input validation: Ensure duration is set between 0 and 100 seconds
             if (duration < 0 || duration > 100)
             {
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
@@ -189,13 +191,15 @@ namespace LifxLibrary
                 fast = fast
             };
 
+            //API endpoint
+            string url = $"https://api.lifx.com/v1/lights/group:{GroupName}/state";
+
             // convert the csharp objects to json objects
             var csharpToJson = JsonSerializer.Serialize(payload);
 
-            //send http request
-            using RestRequest req = new RestRequest($"https://api.lifx.com/v1/lights/group:{GroupName}/state", HttpMethod.Put);
-            req.ContentType = "application/json";
-            req.Headers.Add("Authorization", $"Bearer {TokenKey}");
+            // Build the http request with headers
+            using var req = BuildRequest(url, HttpMethod.Put);
+
             using RestResponse resp = await req.SendAsync(csharpToJson);//send data to the api
 
             ExceptionsThrower(resp);

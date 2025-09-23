@@ -31,7 +31,7 @@ try
 
     //await bulbs.PutColorAsync("white");
 
-    //await bulbs.MultiUseAsync("on", "white");
+   //await bulbs.MultiUseAsync(color:"white", duration:10);
 
     //await bulbs.MultiUseAsync("on");
 
