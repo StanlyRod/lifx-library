@@ -85,9 +85,6 @@ namespace LifxLibrary
 
     }
 
-
-
-
     public static class LightSearcher
     {
         
@@ -99,25 +96,31 @@ namespace LifxLibrary
         }
 
 
-        //this method returns a list of string with the label names of all connected devices
+        //Retrieves a list of labels for all connected LIFX devices.
         public static async Task<List<string>> ShowConnectedDevicesAsync()
         {
+            // API endpoint to get all lights
             string endPoint = "https://api.lifx.com/v1/lights/all";
+
+            // Create an HttpClient and set the Authorization header with the API token
             using HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenKey);
 
+            // Send the GET request to the LIFX API
             HttpResponseMessage response = await client.GetAsync(endPoint);
 
-
+            // List to store labels of connected devices
             List<string> connectedDevices = new List<string>();
-
 
             if (response.IsSuccessStatusCode)
             {
+                // Read the response content stream
                 var responsebody = await response.Content.ReadAsStreamAsync();
 
+                // Deserialize JSON response into a list of Root objects (bulb info)
                 List<Root> obj = await JsonSerializer.DeserializeAsync<List<Root>>(responsebody);
 
+                // Loop through all bulbs and add labels for those that are connected
                 foreach (var bulb in obj)
                 {
                     if (bulb.connected.Equals(true))
@@ -128,33 +131,38 @@ namespace LifxLibrary
             }
             else if (!response.IsSuccessStatusCode)
             {
+                // Throw an exception if the request failed
                 throw new Exception($"Something went wrong {response.StatusCode}");
             }
 
+            // Return the list of connected device labels
             return connectedDevices;
         }
-
-
-
-
 
 
 
         //this method returns the bulb label names
         public static async Task<List<string>> GetNamesAsync()
         {
+            // API endpoint to get all lights
             string endPoint = "https://api.lifx.com/v1/lights/all";
+
+            // Create an HttpClient and set the Authorization header with the API token
             using HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenKey);
 
-            HttpResponseMessage response = await client.GetAsync(endPoint);//send http get request
+            // Send the GET request to the LIFX API
+            HttpResponseMessage response = await client.GetAsync(endPoint);
 
+            // List to store the labels of each device
             List<string> lightsNames = new List<string>();
 
             if (response.IsSuccessStatusCode)
             {
+                // Read the response content stream
                 var responsebody = await response.Content.ReadAsStreamAsync();
 
+                // Deserialize JSON response into a list of Root objects
                 List<Root> obj = await JsonSerializer.DeserializeAsync<List<Root>>(responsebody);
 
                 foreach (var root in obj)
@@ -169,47 +177,74 @@ namespace LifxLibrary
                 throw new Exception($"Something went wrong {response.StatusCode}");
             }
 
+            //return the list of labels
             return lightsNames;
         }
 
 
-
-
-
-        //this method returns the current states of the led bulbs
+        // Retrieves the current state of a specific LIFX bulb by it's label name.
         public static async Task<BulbState> ShowStateAsync(string labelName)
         {
+            // Validate label name
+            if (string.IsNullOrWhiteSpace(labelName))
+                throw new ArgumentException("Label name is required.", nameof(labelName));
+
+            // API endpoint to get the state of a specific bulb by its label
             string endPoint = $"https://api.lifx.com/v1/lights/label:{labelName}";
+
+            // Create HttpClient and attach the Authorization header with the API token
             using HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenKey);
 
-            HttpResponseMessage response = await client.GetAsync(endPoint);//send http get request
+            // Send the GET request to the LIFX API
+            HttpResponseMessage response = await client.GetAsync(endPoint);
 
-
+            // Initialize an empty BulbState object to hold the result
             BulbState lightState = new BulbState();
-
 
             if (response.IsSuccessStatusCode)
             {
+                // Read the response content stream
                 var responsebody = await response.Content.ReadAsStreamAsync();
 
+                // Deserialize JSON into a list of Root objects (the API returns an array)
                 List<Root> obj = await JsonSerializer.DeserializeAsync<List<Root>>(responsebody);
 
-                lightState.Id = obj[0].id;
-                lightState.UUID = obj[0].uuid;
-                lightState.Label = obj[0].label;
-                lightState.Connected = obj[0].connected;
-                lightState.Power = obj[0].power;
-                lightState.Hue = obj[0].color.hue;
-                lightState.Saturation = obj[0].color.saturation;
-                lightState.Brightness = obj[0].brightness;
+                // Ensure the response is not null or empty before accessing index 0
+                //if (obj == null || obj.Count == 0)
+                //{
+                //    throw new Exception($"No bulb found with label name: '{labelName}'.");
+                //}
 
+                var bulb = obj[0];
+
+                // Populate the BulbState object 
+                lightState.Id = bulb.id;
+                lightState.UUID = bulb.uuid;
+                lightState.Label = bulb.label;
+                lightState.Connected = bulb.connected;
+                lightState.Power = bulb.power;
+                lightState.Hue = bulb.color.hue;
+                lightState.Saturation = bulb.color.saturation;
+                lightState.Brightness = bulb.brightness;
             }
-            else if (!response.IsSuccessStatusCode)
+            else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
+                // throw exception if status code is 404
+                throw new Exception($"Could not find light with label name: {labelName}");
+            }
+            else if(response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+            {
+                // throw exception if status code is 401
+                throw new Exception("Error 401 Invalid API token key");
+            }
+            else
+            {
+                // throw exception
                 throw new Exception($"Something went wrong {response.StatusCode}");
             }
 
+            // Return the populated BulbState object
             return lightState;
         }
 
