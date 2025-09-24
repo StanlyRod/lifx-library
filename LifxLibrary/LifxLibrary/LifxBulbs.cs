@@ -12,18 +12,18 @@ namespace LifxLibrary
     {
         private string TokenKey { get; set; }
 
-        private string LightLabel { get; set; }
+        private string SelectorLabel { get; set; }
 
 
-        public LifxBulbs(string tokenKey) 
+        public LifxBulbs(string tokenKey)
         {
             TokenKey = tokenKey;
         }
 
-        public LifxBulbs(string tokenKey, string lightLabel)
+        public LifxBulbs(string tokenKey, string selectorlabel)
         {
             TokenKey = tokenKey;
-            LightLabel = lightLabel;
+            SelectorLabel = selectorlabel;
         }
 
 
@@ -35,7 +35,7 @@ namespace LifxLibrary
                 case 401:
                     throw new Exception("The token key is required or is invalid");
                 case 404:
-                    throw new Exception("The label name is missing or do not match the bulb name.");
+                    throw new Exception("The label name is missing or do not match the bulb name or group name.");
                 case 400:
                     throw new Exception("Request was invalid.");
                 case 500:
@@ -70,7 +70,7 @@ namespace LifxLibrary
             return req;
         }
 
-      
+
 
         #region toggle bulb methods
 
@@ -82,7 +82,7 @@ namespace LifxLibrary
             {
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
             }
-            
+
             //anonymous object type
             var payload = new
             {
@@ -90,7 +90,7 @@ namespace LifxLibrary
             };
 
             //API endpoint
-            string url = $"https://api.lifx.com/v1/lights/label:{LightLabel}/toggle";
+            string url = $"https://api.lifx.com/v1/lights/{SelectorLabel}/toggle";
 
             // convert the csharp objects to json objects
             var csharpToJson = JsonSerializer.Serialize(payload);
@@ -112,7 +112,7 @@ namespace LifxLibrary
             {
                 throw new ArgumentOutOfRangeException("Error the duration time have to be set between 0 and 100 seconds");
             }
-            
+
             //anonymous object type
             var payload = new
             {
@@ -155,7 +155,7 @@ namespace LifxLibrary
             };
 
             // API endpoint
-            string url = $"https://api.lifx.com/v1/lights/label:{LightLabel}/state";
+            string url = $"https://api.lifx.com/v1/lights/{SelectorLabel}/state";
 
             // convert the csharp objects to json objects
             var csharpToJson = JsonSerializer.Serialize(payload);
@@ -192,7 +192,7 @@ namespace LifxLibrary
             };
 
             // API endpoint
-            string url = $"https://api.lifx.com/v1/lights/label:{LightLabel}/state";
+            string url = $"https://api.lifx.com/v1/lights/{SelectorLabel}/state";
 
             // convert the csharp objects to json objects
             var csharpToJson = JsonSerializer.Serialize(payload);
@@ -220,7 +220,7 @@ namespace LifxLibrary
             };
 
             // API endpoint
-            string url = $"https://api.lifx.com/v1/lights/label:{LightLabel}/state";
+            string url = $"https://api.lifx.com/v1/lights/{SelectorLabel}/state";
 
             // convert the csharp objects to json objects
             var csharpToJson = JsonSerializer.Serialize(payload);
@@ -256,7 +256,7 @@ namespace LifxLibrary
             }
 
             // API endpoint
-            string url = $"https://api.lifx.com/v1/lights/label:{LightLabel}/state";
+            string url = $"https://api.lifx.com/v1/lights/{SelectorLabel}/state";
 
             //anonymous object type
             var payload = new
@@ -285,7 +285,6 @@ namespace LifxLibrary
 
         // Asynchronous method that applies a breathing effect to LIFX lights.
         public async Task BreatheEffectAsync(
-            string selector,
             string color,
             string from_color = null,
             double period = 1,
@@ -295,15 +294,13 @@ namespace LifxLibrary
             double peak = 0.5)
         {
             //Validate required parameters
-            if (string.IsNullOrWhiteSpace(selector))
-                throw new ArgumentException("Selector is required.", nameof(selector));
             if (string.IsNullOrWhiteSpace(color))
                 throw new ArgumentException("Color is required.", nameof(color));
             if (peak < 0 || peak > 1)
                 throw new ArgumentOutOfRangeException(nameof(peak), "Peak must be between 0 and 1.");
 
             // Lifx API endpoint for breathe effect
-            string url = $"https://api.lifx.com/v1/lights/{selector}/effects/breathe";
+            string url = $"https://api.lifx.com/v1/lights/{SelectorLabel}/effects/breathe";
 
             // Request body payload
             var payload = new
@@ -332,7 +329,6 @@ namespace LifxLibrary
 
         // Triggers the LIFX pulse effect, flashing between colors.
         public async Task PulseEffectAsync(
-            string selector,
             string color,
             string from_color = null,
             double period = 1,
@@ -341,8 +337,6 @@ namespace LifxLibrary
             bool power_on = true)
         {
             //Validate required parameters
-            if (string.IsNullOrWhiteSpace(selector))
-                throw new ArgumentException("Selector is required.", nameof(selector));
             if (string.IsNullOrWhiteSpace(color))
                 throw new ArgumentException("Color is required.", nameof(color));
             if (period <= 0)
@@ -351,7 +345,7 @@ namespace LifxLibrary
                 throw new ArgumentOutOfRangeException(nameof(cycles), "Cycles must be >= 0.");
 
             // Lifx API endpoint for pulse effect
-            var url = $"https://api.lifx.com/v1/lights/{selector}/effects/pulse";
+            var url = $"https://api.lifx.com/v1/lights/{SelectorLabel}/effects/pulse";
 
             // Request body payload
             var payload = new
@@ -377,32 +371,36 @@ namespace LifxLibrary
         }
 
 
-
+        //Turns off any running effects on the device. 
         public async Task EffectsOffAsync(string selector, bool powerOff = false)
         {
-            if (string.IsNullOrWhiteSpace(token))
-                throw new ArgumentException("Token is required.", nameof(token));
+            //validate token
+            if (string.IsNullOrWhiteSpace(TokenKey))
+                throw new ArgumentException("Token is required.", nameof(TokenKey));
+            //validate selector
             if (string.IsNullOrWhiteSpace(selector))
                 throw new ArgumentException("Selector is required.", nameof(selector));
 
+            //API endpoint
             string url = $"https://api.lifx.com/v1/lights/{selector}/effects/off";
 
-            // JSON body per docs: { "power_off": <bool> }
-            var payload = new { power_off = powerOff };
+            // Request body payload
+            var payload = new
+            {
+                power_off = powerOff
+            };
+
+            // Build the http request with headers
             string json = JsonSerializer.Serialize(payload);
 
-            using var req = new RestRequest(url, HttpMethod.Post);
-            req.ContentType = "application/json";
-            req.Headers.Add("Authorization", $"Bearer {token}");
-            req.Headers.Add("Accept", "application/json");
+            // Build the http request with headers
+            using var req = BuildRequest(url, HttpMethod.Post);
 
             using RestResponse resp = await req.SendAsync(json);
 
-
-
-
-            #endregion
-
+            ExceptionsThrower(resp);
 
         }
+        #endregion
+    }
 }

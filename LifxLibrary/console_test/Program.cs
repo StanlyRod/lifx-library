@@ -10,21 +10,23 @@ try
 {
     string tokenKey = Environment.GetEnvironmentVariable("LIFXKEY");
 
-    //LifxBulbs bulb = new LifxBulbs(tokenKey, "Restroom");
+    LifxBulbs bulb = new LifxBulbs(tokenKey, "group:Room");
 
-    LightGroup bulbs = new LightGroup(tokenKey, "Room");
+    LifxBulbs bulbs = new LifxBulbs(tokenKey, "label:Bedroom");
+
+    //LightGroup bulbs = new LightGroup(tokenKey, "Room");
 
     //await bulb.SweepToggleAsync(0.9);
 
-    //await bulb.LightToggleAsync(0.3);
+    //await bulb.LightToggleAsync(0.5);
 
     //await bulb.PutBrightnessAsync(100);
 
     //await bulb.PutPowerAsync("on", 3);
 
-    //await bulb.PutColorAsync("white");
+   //await bulb.PutColorAsync("white");
 
-    //await bulb.MultiUseAsync(power: "on", color: "white", brightness: 100, duration: 10, fast: false);
+    //await bulb.MultiUseAsync(power: "on", color: "white", brightness: 100, duration: 5, fast: false);
 
 
     //await bulbs.SweepToggleAsync(0.7);
@@ -68,9 +70,11 @@ try
     Console.WriteLine(bedroom.Saturation);
     Console.WriteLine(bedroom.Connected);*/
 
-    //await bulb.BreatheEffectAsync("label:Bedroom", "orange", period: 3, cycles: 5, peak: 0.8);
+    //await bulb.BreatheEffectAsync("pink", period: 3, cycles: 40, peak: 0.8);
 
-    //await bulb.PulseEffectAsync("label:Bedroom", "orange", period: 3, cycles:3);
+   //await bulb.PulseEffectAsync("blue", period: 3, cycles:40);
+
+   await bulbs.EffectsOffAsync("group:Room");
 
 
 }
