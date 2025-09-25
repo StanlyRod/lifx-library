@@ -92,8 +92,13 @@ namespace LifxLibrary
 
         public static void SetTokenKey(string token)
         {
+            // Validate token api key
+            if (string.IsNullOrWhiteSpace(token))
+                throw new ArgumentException("Error Token api key is required.", nameof(token));
+
             TokenKey = token;
         }
+
 
 
         //Retrieves a list of labels for all connected LIFX devices.
@@ -182,6 +187,7 @@ namespace LifxLibrary
         }
 
 
+
         // Retrieves the current state of a specific LIFX bulb by it's label name.
         public static async Task<BulbState> ShowStateAsync(string labelName)
         {
@@ -210,12 +216,6 @@ namespace LifxLibrary
                 // Deserialize JSON into a list of Root objects (the API returns an array)
                 List<Root> obj = await JsonSerializer.DeserializeAsync<List<Root>>(responsebody);
 
-                // Ensure the response is not null or empty before accessing index 0
-                //if (obj == null || obj.Count == 0)
-                //{
-                //    throw new Exception($"No bulb found with label name: '{labelName}'.");
-                //}
-
                 var bulb = obj[0];
 
                 // Populate the BulbState object 
@@ -231,12 +231,12 @@ namespace LifxLibrary
             else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
                 // throw exception if status code is 404
-                throw new Exception($"Could not find light with label name: {labelName}");
+                throw new HttpRequestException($"Error could not find light with label name: {labelName}");
             }
             else if(response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
             {
                 // throw exception if status code is 401
-                throw new Exception("Error 401 Invalid API token key");
+                throw new HttpRequestException("Error 401 Invalid API token key");
             }
             else
             {
@@ -247,7 +247,6 @@ namespace LifxLibrary
             // Return the populated BulbState object
             return lightState;
         }
-
 
     }
 }

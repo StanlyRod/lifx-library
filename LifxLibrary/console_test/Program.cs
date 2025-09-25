@@ -6,16 +6,13 @@ using System.Text.RegularExpressions;
 using static System.Reflection.Metadata.BlobBuilder;
 
 
-try
-{
+//try
+//{
     string tokenKey = Environment.GetEnvironmentVariable("LIFXKEY");
 
     LifxBulbs bulb = new LifxBulbs(tokenKey, "group:Room");
 
     LifxBulbs bulbs = new LifxBulbs(tokenKey, "label:Bedroom");
-
-
-
 
     //LightGroup bulbs = new LightGroup(tokenKey, "Room");
 
@@ -31,27 +28,26 @@ try
 
     //await bulb.MultiUseAsync(power: "on", color: "white", brightness: 100, duration: 5, fast: false);
 
-    /*;
 
-    LightSearcher.SetTokenKey(tokenKey);
+    /*LightSearcher.SetTokenKey(tokenKey);
 
     var allUpDevices = await LightSearcher.ShowConnectedDevicesAsync();
 
     foreach (var device in allUpDevices)
     {
         Console.WriteLine(device.ToString());
-    }
+    }*/
 
 
-    var names = await LightSearcher.GetNamesAsync();
+   /* var names = await LightSearcher.GetNamesAsync();
     foreach (var name in names)
     {
         Console.WriteLine(name);
     }*/
 
-    /*LightSearcher.SetTokenKey(tokenKey);
+    LightSearcher.SetTokenKey(tokenKey);
 
-    BulbState bedroom = await LightSearcher.ShowStateAsync("Bedroom");
+    BulbState bedroom = await LightSearcher.ShowStateAsync("Bedroomd");
     Console.WriteLine(bedroom.Id);
     Console.WriteLine(bedroom.UUID);
     Console.WriteLine(bedroom.Label);
@@ -59,7 +55,7 @@ try
     Console.WriteLine(bedroom.Power);
     Console.WriteLine(bedroom.Brightness);
     Console.WriteLine(bedroom.Hue);
-    Console.WriteLine(bedroom.Saturation);*/
+    Console.WriteLine(bedroom.Saturation);
 
     //await bulb.BreatheEffectAsync("pink", period: 3, cycles: 40, peak: 0.8);
 
@@ -68,9 +64,13 @@ try
     //await bulbs.EffectsOffAsync("group:Room");
 
 
-}
-catch (Exception e)
-{
-    Console.WriteLine(e.Message);
-}
+//}
+//catch(HttpRequestException re)
+//{
+//    Console.WriteLine(re.Message);
+//}
+////catch (Exception e)
+////{
+////    Console.WriteLine(e.Message);
+////}
 

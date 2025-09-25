@@ -33,22 +33,22 @@ namespace LifxLibrary
             switch (resp.StatusCode)
             {
                 case 401:
-                    throw new Exception("The token key is required or is invalid");
+                    throw new HttpRequestException("The token key is required or is invalid");
                 case 404:
-                    throw new Exception("The label name is missing or do not match the bulb name or group name.");
+                    throw new HttpRequestException("The label name is missing or do not match the bulb name or group name.");
                 case 400:
-                    throw new Exception("Request was invalid.");
+                    throw new HttpRequestException("Request was invalid.");
                 case 500:
                 case 502:
                 case 503:
                 case 523:
-                    throw new Exception("Server error Something went wrong on LIFX's end.");
+                    throw new HttpRequestException("Server error Something went wrong on LIFX's end.");
                 case 422:
-                    throw new Exception("The arguments are missing or malformed value.");
+                    throw new HttpRequestException("The arguments are missing or malformed value.");
                 case 429:
-                    throw new Exception("Error Too Many Requests.");
+                    throw new HttpRequestException("Error Too Many Requests.");
                 case 403:
-                    throw new Exception("Bad OAuth scope.");
+                    throw new HttpRequestException("Bad OAuth scope.");
             }
         }
 
