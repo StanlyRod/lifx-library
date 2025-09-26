@@ -9,11 +9,18 @@
     <PackageIcon>lifximg.png</PackageIcon>
     <RepositoryUrl>https://github.com/StanlyRod/lifx-library</RepositoryUrl>
     <PackageTags>Lifx, Bulbs, Iot, Smart, Led,</PackageTags>
-    <PackageReleaseNotes>Breaking change: All synchronous methods have been removed. Use async counterparts (e.g., LightToggleAsync) for non-blocking operations.
+    <PackageReleaseNotes>Breaking changes:
+All synchronous methods have been removed. 
+Use async counterparts (e.g., LightToggleAsync) for non-blocking operations.
+LightGroup class has been removed.
+Breathe Effect method has been added
+Pulse effect method has been added
+Effect off method has been added
 </PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.MD</PackageReadmeFile>
     <Version>2.0.0</Version>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
