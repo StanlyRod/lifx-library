@@ -146,7 +146,7 @@ namespace LifxLibrary
 
 
 
-        //this method returns the bulb label names
+        //This method returns the bulb label names
         public static async Task<List<string>> GetNamesAsync()
         {
             // API endpoint to get all lights

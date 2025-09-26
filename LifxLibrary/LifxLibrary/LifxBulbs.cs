@@ -5,6 +5,7 @@ using RestWrapper;
 using System.Text.Json;
 //LifxLibrary a .NET library to control lifx led bulbs over the cloud
 //author: Ramon Stanly Rodriguez
+//version: 2.0.0
 
 namespace LifxLibrary
 {
@@ -141,6 +142,10 @@ namespace LifxLibrary
         //asynchronous method to change power state of the light bulb
         public async Task PutPowerAsync(string power, double duration = 0)
         {
+            //validate power parameter
+            if (string.IsNullOrWhiteSpace(power))
+                throw new ArgumentException($"Error: the argument power is null or empty {nameof(power)}");
+
             // Input validation: Ensure duration is between 0 and 100 seconds
             if (duration < 0 || duration > 100)
             {
@@ -213,6 +218,10 @@ namespace LifxLibrary
         //Asynchronous method to change the light bulb color
         public async Task PutColorAsync(string colorValue)
         {
+            //validate color value
+            if (string.IsNullOrWhiteSpace(colorValue))
+                throw new ArgumentException("Error colorValue argument is required.", nameof(colorValue)); 
+
             //anonymous object type
             var payload = new
             {
@@ -297,7 +306,7 @@ namespace LifxLibrary
             if (string.IsNullOrWhiteSpace(color))
                 throw new ArgumentException("Color is required.", nameof(color));
             if (peak < 0 || peak > 1)
-                throw new ArgumentOutOfRangeException(nameof(peak), "Peak must be between 0 and 1.");
+                throw new ArgumentOutOfRangeException("Peak must be between 0 and 1. ", nameof(peak));
 
             // Lifx API endpoint for breathe effect
             string url = $"https://api.lifx.com/v1/lights/{SelectorLabel}/effects/breathe";
@@ -374,9 +383,6 @@ namespace LifxLibrary
         //Turns off any running effects on the device. 
         public async Task EffectsOffAsync(string selector, bool powerOff = false)
         {
-            //validate token
-            if (string.IsNullOrWhiteSpace(TokenKey))
-                throw new ArgumentException("Token is required.", nameof(TokenKey));
             //validate selector
             if (string.IsNullOrWhiteSpace(selector))
                 throw new ArgumentException("Selector is required.", nameof(selector));

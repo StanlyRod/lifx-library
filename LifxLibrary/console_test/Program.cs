@@ -6,13 +6,14 @@ using System.Text.RegularExpressions;
 using static System.Reflection.Metadata.BlobBuilder;
 
 
-//try
-//{
-    string tokenKey = Environment.GetEnvironmentVariable("LIFXKEY");
+try
+{
+    //string tokenKey = Environment.GetEnvironmentVariable("LIFXKEY");
 
-    LifxBulbs bulb = new LifxBulbs(tokenKey, "group:Room");
+    //LifxBulbs kitchen = new LifxBulbs(tokenKey, "group:Kitchen");
 
-    LifxBulbs bulbs = new LifxBulbs(tokenKey, "label:Bedroom");
+    //LifxBulbs bulbs = new LifxBulbs(tokenKey, "label:Bedroom");
+    
 
     //LightGroup bulbs = new LightGroup(tokenKey, "Room");
 
@@ -24,7 +25,7 @@ using static System.Reflection.Metadata.BlobBuilder;
 
     //await bulb.PutPowerAsync("on", 3);
 
-    //await bulb.PutColorAsync("white");
+    //await bulb.PutColorAsync("blue");
 
     //await bulb.MultiUseAsync(power: "on", color: "white", brightness: 100, duration: 5, fast: false);
 
@@ -45,7 +46,7 @@ using static System.Reflection.Metadata.BlobBuilder;
         Console.WriteLine(name);
     }*/
 
-    LightSearcher.SetTokenKey(tokenKey);
+   /* LightSearcher.SetTokenKey(tokenKey);
 
     BulbState bedroom = await LightSearcher.ShowStateAsync("Bedroomd");
     Console.WriteLine(bedroom.Id);
@@ -55,22 +56,22 @@ using static System.Reflection.Metadata.BlobBuilder;
     Console.WriteLine(bedroom.Power);
     Console.WriteLine(bedroom.Brightness);
     Console.WriteLine(bedroom.Hue);
-    Console.WriteLine(bedroom.Saturation);
+    Console.WriteLine(bedroom.Saturation);*/
 
-    //await bulb.BreatheEffectAsync("pink", period: 3, cycles: 40, peak: 0.8);
+    //await bulb.BreatheEffectAsync("pink", period: 3, cycles: 40, peak: 0.5);
 
     //await bulb.PulseEffectAsync("blue", period: 3, cycles:40);
 
     //await bulbs.EffectsOffAsync("group:Room");
 
 
-//}
-//catch(HttpRequestException re)
-//{
-//    Console.WriteLine(re.Message);
-//}
-////catch (Exception e)
-////{
-////    Console.WriteLine(e.Message);
-////}
+}
+catch(HttpRequestException re)
+{
+    Console.WriteLine(re.Message);
+}
+catch (Exception e)
+{
+    Console.WriteLine(e.Message);
+}
 
